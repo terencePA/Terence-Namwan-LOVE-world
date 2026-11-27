@@ -415,19 +415,43 @@
     .slot-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
     .slot { width: 54px; height: 54px; border: 2px dashed #e3b7cd; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #cf9ab5; font-size: 1.3rem; background: #fff8fb; }
     .smoke { animation: floatGentle 2s ease-in-out infinite; }
-    .wm-scroll { overflow-x: auto; padding-bottom: 4px; }
-    .wm { position: relative; width: 100%; min-width: 560px; max-width: 820px; margin: 0 auto; aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; border: 2px solid #8ecfa8; box-shadow: 0 8px 20px rgba(60,100,80,.18); }
+    .wm-scroll { padding-bottom: 4px; }
+    @media (max-width: 640px) { .wm { aspect-ratio: 4 / 3; } }
+    .wm { position: relative; width: 100%; max-width: 820px; margin: 0 auto; aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; border: 2px solid #8ecfa8; box-shadow: 0 8px 20px rgba(60,100,80,.18); }
     .wm-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
     .wm-node { position: absolute; transform: translate(-50%, -50%); text-align: center; cursor: pointer; transition: transform .2s; z-index: 2; }
     .wm-node:hover { transform: translate(-50%, -56%); }
-    .wm-badge { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; border: 3px solid #fff; box-shadow: 0 5px 0 rgba(0,0,0,.18); margin: 0 auto; }
-    .wm-label { margin-top: 5px; background: rgba(255,255,255,.93); border-radius: 999px; padding: 1px 9px; font-size: .78rem; font-weight: 800; white-space: nowrap; box-shadow: 0 2px 0 rgba(0,0,0,.1); }
+    .wm-badge { width: clamp(30px, 7.6vw, 58px); height: clamp(30px, 7.6vw, 58px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: clamp(1rem, 4.4vw, 1.9rem); border: 2px solid #fff; box-shadow: 0 5px 0 rgba(0,0,0,.18); margin: 0 auto; }
+    .wm-label { margin-top: 5px; background: rgba(255,255,255,.93); border-radius: 999px; padding: 0 clamp(4px,1.6vw,9px); font-size: clamp(.56rem, 2.3vw, .78rem); font-weight: 800; white-space: nowrap; box-shadow: 0 2px 0 rgba(0,0,0,.1); }
     .wm-node.selected .wm-badge { outline: 4px solid var(--primary); animation: hop 1.4s ease-in-out infinite; }
     .wm-node.locked { filter: grayscale(.9); opacity: .85; }
-    .wm-pin { position: absolute; z-index: 4; font-size: 1.7rem; transition: left .7s ease, top .7s ease; transform: translate(16px, -48px); pointer-events: none; filter: drop-shadow(0 3px 2px rgba(0,0,0,.3)); }
+    .wm-pin { position: absolute; z-index: 4; font-size: clamp(1rem, 4vw, 1.7rem); transition: left .7s ease, top .7s ease; transform: translate(clamp(10px,3vw,18px), calc(-1 * clamp(24px,6vw,50px))); pointer-events: none; filter: drop-shadow(0 3px 2px rgba(0,0,0,.3)); }
     .wm-compass { position: absolute; top: 6px; left: 50%; transform: translateX(-50%); z-index: 3; background: rgba(255,255,255,.8); border-radius: 999px; padding: 1px 10px; font-size: .75rem; font-weight: 800; }
     .wm-cloud { animation: floatGentle 5s ease-in-out infinite; }
     .town-b:hover { filter: brightness(1.07); }
+    .banner-park { background: linear-gradient(90deg, #ffe0f0, #ffc2dd); }
+    .overlay { position: fixed; inset: 0; background: rgba(45,36,48,.55); display: none; align-items: center; justify-content: center; z-index: 200; padding: 12px; }
+    .overlay.show { display: flex; }
+    .modal-card { background: #fff; border-radius: 22px; padding: 20px 18px; width: 100%; max-width: 560px; max-height: 88vh; overflow: auto; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+    .modal-x { position: absolute; top: 8px; right: 10px; border: none; background: #f2ecf2; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: 900; }
+    .id-btn { display: block; width: 100%; margin: 10px 0; padding: 16px; border-radius: 16px; border: 3px solid var(--border); background: #fff; font-size: 1.15rem; font-weight: 900; cursor: pointer; }
+    .id-btn:hover, .id-btn.last { border-color: var(--primary); background: #fff0f6; }
+    .heart-bar { max-width: 1120px; margin: 14px auto 0; padding: 0 14px; }
+    .hb { background: linear-gradient(90deg, #fff0f6, #ffe3ef); border: 2px solid #ffc2dd; border-radius: 16px; padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+    .opt-btn { display: block; width: 100%; text-align: left; margin: 6px 0; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--border); background: #fff; font-weight: 700; cursor: pointer; font-size: .95rem; }
+    .opt-btn:hover { border-color: var(--primary); }
+    .mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 340px; margin: 8px auto; }
+    .mem-card { aspect-ratio: 1; font-size: 1.6rem; border-radius: 12px; border: 2px solid #ead9e4; background: #fff4f8; cursor: pointer; }
+    .mem-card.open { background: #fff; border-color: var(--primary); }
+    .mem-card.done { background: #dffbe6; border-color: #54c47d; }
+    .cdx-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+    .cdx-item { text-align: center; border: 1px solid var(--border); border-radius: 12px; padding: 8px 4px; font-size: .76rem; background: #fffdfe; }
+    .cdx-item.lock { opacity: .5; filter: grayscale(1); }
+    .cdx-item .ic { font-size: 1.7rem; }
+    .tabs-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+    .tab-btn { border: 2px solid var(--border); background: #fff; border-radius: 999px; padding: 3px 10px; font-size: .76rem; font-weight: 800; cursor: pointer; }
+    .tab-btn.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+    body { font-family: inherit; }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes sway {
       0%, 100% { transform: rotate(-4deg); }
@@ -461,21 +485,40 @@
   </style>
 </head>
 <body>
+  <div class="overlay show" id="idModal">
+    <div class="modal-card" style="text-align:center;max-width:420px;">
+      <div style="font-size:2.4rem;">💞</div>
+      <h2 style="margin:6px 0;">歡迎來到情侶莊園</h2>
+      <p style="color:var(--muted);margin:0 0 8px;">請選擇你的身分，選好後就會進入遊戲</p>
+      <button class="id-btn" id="idBtn1" onclick="chooseActor('player_1')">🧑 Terence</button>
+      <button class="id-btn" id="idBtn2" onclick="chooseActor('player_2')">👩 Namwan</button>
+      <div data-notr="1" style="margin-top:8px;display:inline-flex;gap:4px;">
+        <button class="acc-btn lang-btn" data-lang="zh" onclick="setLang('zh')">中文</button>
+        <button class="acc-btn lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="acc-btn lang-btn" data-lang="th" onclick="setLang('th')">ไทย</button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal-card"><button class="modal-x" onclick="closeModal()">✕</button><div id="modalBody"></div></div></div>
   <header>
     <div class="top-row">
-      <div class="brand">🗺️ Terence &amp; Namwan 2.5D 情侶世界 <span id="syncStatus" style="font-size:0.78rem;color:#7a6c7a;">（準備同步）</span></div>
+      <div class="brand">🗺️ Terence &amp; Namwan 2.5D 情侶世界 <span id="syncStatus" style="font-size:0.78rem;color:#7a6c7a;">☁️ 準備中</span></div>
       <div class="acc-group">
-        <button class="acc-btn" id="syncNowBtn" onclick="syncWithUploadFirst()">🔄 先傳後載同步</button>
+        <button class="acc-btn" onclick="openCodex()">📖 圖鑑</button>
         <button class="acc-btn" id="soundBtn" onclick="toggleSound()">🔊 音效開</button>
-        <span>身分：</span>
-        <button class="acc-btn active" id="btnP1" onclick="switchActor('player_1')">🧑 Terence</button>
-        <button class="acc-btn" id="btnP2" onclick="switchActor('player_2')">👩 Namwan</button>
+        <span class="acc-btn active" id="whoLabel" style="cursor:default;">🧑 Terence</span>
+        <span data-notr="1" style="display:inline-flex;gap:4px;">
+          <button class="acc-btn lang-btn active" data-lang="zh" onclick="setLang('zh')">中文</button>
+          <button class="acc-btn lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <button class="acc-btn lang-btn" data-lang="th" onclick="setLang('th')">ไทย</button>
+        </span>
       </div>
     </div>
     <div class="hud" id="hud"></div>
   </header>
 
   <div class="container">
+    <section class="heart-bar" id="heartBar" style="padding:0;margin:0 0 12px;"></section>
     <!-- 2.5D 世界地圖 -->
     <section class="world-map-card">
       <div class="map-header">
@@ -588,6 +631,7 @@
     function toggleSound() {
       const on = SoundFX.toggle();
       document.getElementById('soundBtn').textContent = on ? '🔊 音效開' : '🔇 音效靜音';
+      translateDom(document.getElementById('soundBtn'));
       if (on) SoundFX.coin();
     }
 
@@ -598,6 +642,7 @@
       plaza:    { label: '🏛️ 城鎮中心', bannerClass: 'banner-plaza',    desc: '城鎮地圖！點選小屋、烘焙坊、風車、樹屋來升級，還能看到買下的建築布置。' },
       beach:    { label: '🏖️ 海邊',        bannerClass: 'banner-beach',    desc: '海浪翻湧與撿貝殼特效，聆聽海風與浪潮音效！' },
       mountain: { label: '⛰️ 山上',        bannerClass: 'banner-mountain', desc: '流動山泉水與愛情祈願樹，寫下願望並聆聽山泉風鈴！' },
+      park:     { label: '🎡 愛心遊樂園', bannerClass: 'banner-park',    desc: '記憶翻牌、接愛心、幸運轉盤、愛的小紙條與約會任務卡，一起增進感情！' },
       forest:   { label: '🌲 森林',        bannerClass: 'banner-forest',   desc: '森林微風與清脆鳥叫聲，伐木並挑戰抓蟲小遊戲！' }
     };
 
@@ -699,7 +744,7 @@
 
     /* ===== 愛情等級（最高 999）與解鎖 ===== */
     const MAX_LV = 999;
-    const LOC_UNLOCK = { farm: 1, animals: 1, shop: 1, plaza: 1, beach: 2, forest: 4, mountain: 8 };
+    const LOC_UNLOCK = { park: 3, farm: 1, animals: 1, shop: 1, plaza: 1, beach: 2, forest: 4, mountain: 8 };
     const LANDMARKS = [
       { lv: 1, icon: '⛲', name: '愛心噴泉' }, { lv: 15, icon: '⛪', name: '愛情教堂' }, { lv: 40, icon: '🎡', name: '摩天輪' },
       { lv: 80, icon: '🏰', name: '夢幻城堡' }, { lv: 150, icon: '🗼', name: '愛情塔' }, { lv: 250, icon: '🌈', name: '彩虹橋' },
@@ -786,7 +831,8 @@
       animals:  { x: 83, y: 64, icon: '🐾', name: '牧場',     bg: '#f7c948' },
       plaza:    { x: 50, y: 44, icon: '🏛️', name: '城鎮中心', bg: '#b8a9ff' },
       shop:     { x: 71, y: 44, icon: '🛒', name: '商店',     bg: '#ff9ec7' },
-      beach:    { x: 50, y: 80, icon: '🏖️', name: '海邊',     bg: '#6ad7f0' }
+      beach:    { x: 50, y: 80, icon: '🏖️', name: '海邊',     bg: '#6ad7f0' },
+      park:     { x: 28, y: 44, icon: '🎡', name: '遊樂園',   bg: '#ffb3d1' }
     };
     function worldBgSvg() {
       let sd = 11; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
@@ -797,7 +843,7 @@
       for (let i = 0; i < 6; i++) t += `<path d="M${6 + i * 27},${94 + (i % 2) * 3} q4,-2 8,0 t8,0" fill="none" stroke="#fff" stroke-width=".7" opacity=".6"/>`;
       t += `<polygon points="80,40 94,22 108,40" fill="#9fb0a0"/><polygon points="96,40 114,8 132,40" fill="#94a3b8"/><polygon points="122,40 140,3 158,40" fill="#a8b4c4"/><polygon points="108,18 114,8 120,18 114,15" fill="#fff"/><polygon points="134,14 140,3 146,14 140,11" fill="#fff"/>`;
       t += `<path d="M118,38 C104,46 112,60 100,68 S96,76 94,82" fill="none" stroke="#7dd3fc" stroke-width="2.4" stroke-linecap="round"/>`;
-      ['M80,44 Q50,40 24,24', 'M80,44 Q110,38 133,19', 'M80,44 Q50,58 26,64', 'M80,44 Q110,58 133,64', 'M80,44 L114,44', 'M80,44 L80,80'].forEach(d => {
+      ['M80,44 L45,44', 'M80,44 Q50,40 24,24', 'M80,44 Q110,38 133,19', 'M80,44 Q50,58 26,64', 'M80,44 Q110,58 133,64', 'M80,44 L114,44', 'M80,44 L80,80'].forEach(d => {
         t += `<path d="${d}" fill="none" stroke="#e8d7b0" stroke-width="3.2" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#c9b48a" stroke-width=".5" stroke-dasharray="1.5 1.5"/>`;
       });
       t += `<rect x="4" y="52" width="36" height="22" rx="3" fill="#d9b680" stroke="#b8935a" stroke-width=".6"/>`;
@@ -890,10 +936,446 @@
       return h + unlockTableHtml();
     }
 
+    /* ================= 日期 / 交往天數 ================= */
+    const START_DATE = [2026, 8, 20];
+    function todayKey() { return new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10); }
+    function keyDays(k) { const [y, m, d] = k.split('-').map(Number); return Math.floor((Date.UTC(y, m - 1, d) - Date.UTC(START_DATE[0], START_DATE[1] - 1, START_DATE[2])) / 86400000); }
+    function dayNumber() { return Math.max(1, keyDays(todayKey()) + 1); }
+    function otherUser() { return state.users.find(x => x.accountId !== actor) || state.users[1]; }
+    function esc(x) { return String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+    function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+    /* ================= 合併（雙人同步用） ================= */
+    function unionNotes(a, b) {
+      const m = {};
+      (a || []).concat(b || []).forEach(n => { if (!n || !n.id) return; m[n.id] = m[n.id] ? { ...m[n.id], ...n, read: !!(m[n.id].read || n.read) } : n; });
+      return Object.values(m).sort((x, y) => String(y.id).localeCompare(String(x.id))).slice(0, 30);
+    }
+    function mergeHeart(a, b) {
+      const out = {};
+      new Set(Object.keys(a || {}).concat(Object.keys(b || {}))).forEach(k => {
+        const x = (a || {})[k] || {}, y = (b || {})[k] || {}, o = {};
+        ['player_1', 'player_2'].forEach(p => { const v = x[p] !== undefined ? x[p] : y[p]; if (v !== undefined) o[p] = v; });
+        if (x.bonus || y.bonus) o.bonus = true;
+        out[k] = o;
+      });
+      const keys = Object.keys(out).sort().slice(-60), r = {};
+      keys.forEach(k => r[k] = out[k]);
+      return r;
+    }
+    function mergeCodex(a, b) {
+      const out = { finds: {}, crops: {}, animals: {} };
+      ['finds', 'crops', 'animals'].forEach(c => {
+        const x = (a || {})[c] || {}, y = (b || {})[c] || {};
+        new Set(Object.keys(x).concat(Object.keys(y))).forEach(k => { out[c][k] = Math.max(Number(x[k]) || 0, Number(y[k]) || 0); });
+      });
+      return out;
+    }
+
+    /* ================= 彈出視窗 ================= */
+    function openModal(fn) { modalFn = fn; document.getElementById('modal').classList.add('show'); refreshModal(); }
+    function refreshModal() { if (!modalFn) return; const c = document.getElementById('modalBody'); c.innerHTML = modalFn(); if (typeof translateDom === 'function') translateDom(c); }
+    function closeModal() { modalFn = null; document.getElementById('modal').classList.remove('show'); }
+
+    /* ================= 圖鑑 ================= */
+    const FINDS = [];
+    [['beach', [['🐚','貝殼',30],['⭐','海星',22],['🦀','小螃蟹',18],['🪸','珊瑚',12],['🐡','河豚',8],['🪼','水母',6],['🦪','珍珠貝',3],['🐙','章魚',1]]],
+     ['mountain', [['🪨','小石頭',30],['🌸','高山花',22],['🍄','山菇',18],['🍯','野蜂蜜',12],['❄️','冰晶',8],['🪶','老鷹羽毛',6],['💎','水晶',3],['🦌','白鹿',1]]],
+     ['forest', [['🍂','落葉',30],['🌰','橡實',22],['🐛','毛毛蟲',18],['🦋','蝴蝶',12],['🪹','鳥巢',8],['🌿','藥草',6],['🦉','貓頭鷹',3],['✨','螢火蟲',1]]]
+    ].forEach(([spot, list]) => list.forEach(([icon, name, w], i) => FINDS.push({ id: 'f_' + spot[0] + (i + 1), spot, icon, name, w })));
+    [['🌠','流星碎片'],['🌈','彩虹水晶'],['🧚','小精靈翅粉'],['🍾','漂流瓶'],['🐟','金鯉魚鱗'],['🍀','四葉幸運草'],['☄️','愛心彗星'],['🗝️','古老鑰匙'],['🧜','人魚眼淚'],['🌙','月光花'],['🥚','神秘龍蛋'],['🔮','命運水晶']]
+      .forEach(([icon, name], i) => FINDS.push({ id: 'r_' + String(i + 1).padStart(2, '0'), spot: 'rare', icon, name, w: 0 }));
+    function pickFind(spot) {
+      const list = FINDS.filter(f => f.spot === spot);
+      if (!list.length) return null;
+      let r = Math.random() * list.reduce((t, f) => t + f.w, 0);
+      for (const f of list) { r -= f.w; if (r <= 0) return f; }
+      return list[0];
+    }
+    function codexAdd(cat, key, n) { const c = state.codex; c[cat] = c[cat] || {}; const first = !c[cat][key]; c[cat][key] = (c[cat][key] || 0) + (n === undefined ? 1 : n); return first; }
+    function codexNew(cat, key, label) { if (codexAdd(cat, key)) { toast(`📖 圖鑑新發現：${label}`); addExp(15, `📖 圖鑑新發現：${label}`); } }
+    function codexCats() {
+      const cx = state.codex;
+      const finds = spot => FINDS.filter(f => f.spot === spot).map(f => ({ icon: f.icon, name: f.name, n: cx.finds[f.id] || 0, hint: spot === 'rare' ? '突發事件' : '探索' }));
+      return [
+        { id: 'crops', name: '🌾 作物', items: Object.entries(CROPS).map(([k, c]) => ({ icon: c.icon, name: c.name, n: cx.crops[k] || 0, hint: `Lv.${c.lv}` })) },
+        { id: 'animals', name: '🐾 動物', items: Object.entries(ANIMALS).map(([k, a]) => ({ icon: a.icon, name: a.name, n: cx.animals[k] || 0, hint: `Lv.${a.lv}` })) },
+        { id: 'beach', name: '🏖️ 海邊', items: finds('beach') },
+        { id: 'mountain', name: '⛰️ 山上', items: finds('mountain') },
+        { id: 'forest', name: '🌲 森林', items: finds('forest') },
+        { id: 'rare', name: '✨ 稀有', items: finds('rare') },
+        { id: 'decor', name: '🎨 布置', items: DECOR_CATALOG.map(d => ({ icon: d.icon, name: d.name.replace(/^\S+\s/, ''), n: state.decorations.includes(d.id) ? 1 : 0, hint: `Lv.${d.lv}` })) }
+      ];
+    }
+    function openCodex() { openModal(renderCodexHtml); }
+    function setCodexTab(t) { codexTab = t; refreshModal(); }
+    function renderCodexHtml() {
+      const cats = codexCats();
+      const all = cats.reduce((t, c) => t + c.items.length, 0), got = cats.reduce((t, c) => t + c.items.filter(i => i.n > 0).length, 0);
+      const cat = cats.find(c => c.id === codexTab) || cats[0];
+      return `<h3 style="margin:0 0 4px;">📖 圖鑑收藏</h3>
+        <div style="font-size:0.84rem;color:var(--muted);">總收集進度 ${got} / ${all}</div>
+        <div class="progress"><div style="width:${Math.round(got / all * 100)}%"></div></div>
+        <div class="tabs-row">` + cats.map(c => `<button class="tab-btn ${c.id === cat.id ? 'on' : ''}" onclick="setCodexTab('${c.id}')">${c.name} ${c.items.filter(i => i.n > 0).length}/${c.items.length}</button>`).join('') + `</div>
+        <div class="cdx-grid">` + cat.items.map(i => i.n > 0
+          ? `<div class="cdx-item"><div class="ic">${i.icon}</div><div><strong>${i.name}</strong></div><div style="color:var(--muted);">×${i.n}</div></div>`
+          : `<div class="cdx-item lock"><div class="ic">❓</div><div>???</div><div style="color:var(--muted);">${i.hint}</div></div>`).join('') + `</div>`;
+    }
+
+    /* ================= 突發事件（極低機率） ================= */
+    const EVENTS = [
+      { rare: 'r_01', icon: '🌠', name: '流星雨', desc: '夜空劃過一陣流星雨，你們一起許了願，一塊閃亮的碎片落在手心。', coins: 400, exp: 100 },
+      { rare: 'r_02', icon: '🌈', name: '彩虹出現', desc: '雨後天空出現一道巨大的彩虹，彩虹的盡頭閃著水晶的光芒。', coins: 400, exp: 100 },
+      { rare: 'r_03', icon: '🧚', name: '迷路的小精靈', desc: '一隻迷路的小精靈被你們帶回家，臨走前留下了翅膀上的閃粉。', coins: 500, exp: 120 },
+      { rare: 'r_04', icon: '🍾', name: '神秘漂流瓶', desc: '海浪沖來一只漂流瓶，裡面裝著一封來自遠方的祝福信。', coins: 350, exp: 90 },
+      { rare: 'r_05', icon: '🐟', name: '金色鯉魚', desc: '小河裡跳出一條金色鯉魚，牠掉落了一片閃亮的鱗片。', coins: 600, exp: 130 },
+      { rare: 'r_06', icon: '🍀', name: '幸運四葉草', desc: '草地上發現了傳說中的四葉幸運草，據說會帶來一整年的好運。', coins: 500, exp: 110 },
+      { rare: 'r_07', icon: '☄️', name: '愛心彗星', desc: '一顆心形的彗星掠過夜空，留下了溫暖的碎片。', coins: 800, exp: 160 },
+      { rare: 'r_08', icon: '🗝️', name: '古老寶箱', desc: '土裡挖出一個古老的寶箱，裡面躺著一把刻著愛心的鑰匙。', coins: 700, exp: 150 },
+      { rare: 'r_09', icon: '🧜', name: '人魚的眼淚', desc: '月光下的海面浮現人魚的身影，她送給你們一滴珍珠般的眼淚。', coins: 900, exp: 180 },
+      { rare: 'r_10', icon: '🌙', name: '月光花盛開', desc: '深夜裡月光花悄悄盛開，只有相愛的人才看得見它。', coins: 600, exp: 140 },
+      { rare: 'r_11', icon: '🥚', name: '神秘龍蛋', desc: '山洞深處有一顆微微發熱的蛋，似乎正等著被愛孵化。', coins: 1000, exp: 200 },
+      { rare: 'r_12', icon: '🔮', name: '神秘旅行商人', desc: '一位旅行商人路過，把珍藏的水晶球送給了這對甜蜜的情侶。', coins: 800, exp: 170 }
+    ];
+    function triggerEvent() {
+      if (inEvent || !started || busyGame || gTimer || modalFn) return;
+      inEvent = true;
+      const ev = EVENTS[Math.floor(Math.random() * EVENTS.length)];
+      const rare = FINDS.find(f => f.id === ev.rare);
+      const first = codexAdd('finds', rare.id);
+      state.users.forEach(u => { u.coins += ev.coins; });
+      addExp(ev.exp, `✨ 突發事件「${ev.name}」發生了！獲得 ${rare.icon}${rare.name}`);
+      inEvent = false;
+      SoundFX.wish();
+      openModal(() => `<div style="text-align:center;">
+        <div style="font-size:3.2rem;">${ev.icon}</div>
+        <h3 style="margin:4px 0;">✨ 突發事件：${ev.name}</h3>
+        <p style="color:var(--muted);">${ev.desc}</p>
+        <div class="card-box" style="margin:10px 0;"><div style="font-size:2.2rem;">${rare.icon}</div><strong>${rare.name}</strong>${first ? ' <span style="color:var(--primary-dark);">🆕 新收藏！</span>' : ''}<div style="font-size:0.82rem;color:var(--muted);">稀有物已收進圖鑑</div></div>
+        <div style="font-size:0.88rem;">💰 你們各獲得 ${ev.coins} 金幣・💖 +${ev.exp} EXP</div>
+        <button class="btn btn-pink" style="margin-top:12px;" onclick="closeModal()">太棒了，收下！</button></div>`);
+      render();
+      syncWithUploadFirst(true);
+    }
+
+    /* ================= 每日心動時刻 ================= */
+    const QUESTIONS = [
+      { q: '約會最想去哪裡？', o: ['🏖️ 海邊', '⛰️ 山上', '☕ 咖啡廳', '🎡 遊樂園'] },
+      { q: '今天最想吃什麼？', o: ['🍲 火鍋', '🍰 甜點', '🍢 小吃', '🏠 在家煮'] },
+      { q: '如果突然放一天假，你想？', o: ['😴 睡到飽', '✈️ 一起旅行', '🎬 看電影', '🛍️ 逛街'] },
+      { q: '你比較喜歡哪種天氣？', o: ['☀️ 晴天', '🌧️ 下雨', '☁️ 陰天', '❄️ 下雪'] },
+      { q: '另一半心情不好時，你會？', o: ['🤗 給個擁抱', '🕊️ 給對方空間', '🍩 買好吃的', '💬 好好聊聊'] },
+      { q: '你最喜歡的相處方式？', o: ['💬 一起聊天', '📚 各做各的但在一起', '🎮 一起玩遊戲', '🏃 一起運動'] },
+      { q: '想一起養哪種寵物？', o: ['🐱 貓', '🐶 狗', '🐰 兔子', '🌱 不養'] },
+      { q: '理想的紀念日禮物？', o: ['💌 手寫信', '💍 小飾品', '🍽️ 一頓大餐', '🧳 一趟旅行'] },
+      { q: '早晨的你是？', o: ['🐦 早起鳥', '🛏️ 愛賴床', '🎲 看心情'] },
+      { q: '最想一起學什麼？', o: ['🍳 做料理', '💃 跳舞', '🤿 潛水', '🎸 樂器'] },
+      { q: '一起看電影你想看？', o: ['💕 愛情片', '😂 喜劇片', '👻 恐怖片', '🎞️ 動畫片'] },
+      { q: '睡前最想做什麼？', o: ['💬 聊天', '📺 看劇', '🫂 擁抱', '📱 滑手機'] },
+      { q: '想像中未來的家是？', o: ['🏖️ 海邊小屋', '🏙️ 城市公寓', '🌲 山林木屋', '🌷 有花園的房子'] },
+      { q: '你最喜歡對方的哪一點？', o: ['😊 笑容', '🌸 溫柔', '🤣 幽默', '💪 努力'] },
+      { q: '一起旅行最想去哪？', o: ['🗾 日本', '🇹🇭 泰國', '🏰 歐洲', '🇹🇼 台灣'] },
+      { q: '吵架後你通常會？', o: ['🙇 先道歉', '⏳ 等對方', '📩 傳訊息', '🍜 買宵夜'] },
+      { q: '最想一起完成的事？', o: ['🌍 環遊世界', '🏡 買房子', '🏪 開一間店', '🌌 看極光'] },
+      { q: '你的充電方式是？', o: ['😴 睡覺', '🍔 吃美食', '💑 跟你在一起', '🎧 獨處'] },
+      { q: '最想在哪天慶祝？', o: ['🎂 生日', '💞 紀念日', '🎆 跨年', '🎉 隨時'] },
+      { q: '今天的心情顏色是？', o: ['🩷 粉紅', '🩵 天藍', '💛 鵝黃', '💚 薄荷綠'] }
+    ];
+    function qForKey(k) { const n = QUESTIONS.length; return QUESTIONS[((keyDays(k) % n) + n) % n]; }
+    function heartAns(k) { return (state.heart || {})[k] || {}; }
+    function heartState() { const h = heartAns(todayKey()), pid = otherUser().accountId; if (h[actor] === undefined) return 0; if (h[pid] === undefined) return 1; return 2; }
+    function heartStreak() {
+      let k = todayKey(), n = 0;
+      const prev = x => { const [y, m, d] = x.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d - 1)).toISOString().slice(0, 10); };
+      const both = x => { const h = heartAns(x); return h.player_1 !== undefined && h.player_2 !== undefined; };
+      if (!both(k)) k = prev(k);
+      while (both(k) && n < 500) { n++; k = prev(k); }
+      return n;
+    }
+    function renderHeartBar() {
+      const el = document.getElementById('heartBar'); if (!el) return;
+      const n = dayNumber(), ms = [100, 200, 300, 365, 500, 600, 700, 730, 800, 900, 1000, 1095, 1500, 2000, 3000];
+      const m = ms.find(x => x >= n) || (Math.ceil(n / 365) * 365);
+      const st = ['尚未作答', '等待另一半', '已揭曉 ✨'][heartState()];
+      el.innerHTML = `<div class="hb"><div>
+          <div style="font-size:1.1rem;font-weight:900;color:var(--primary-dark);">💕 已交往第 ${n} 天</div>
+          <div style="font-size:0.78rem;color:var(--muted);">從 2026/08/20 開始・${n === m ? `🎉 今天是第 ${m} 天紀念日！` : `距離第 ${m} 天還有 ${m - n} 天`}</div></div>
+        <button class="btn btn-pink" onclick="openHeart()">💓 今日心動時刻・${st}</button></div>`;
+    }
+    function openHeart() { openModal(renderHeartHtml); }
+    function renderHeartHtml() {
+      const k = todayKey(), q = qForKey(k), h = heartAns(k), me = otherUser(), mine = h[actor], theirs = h[me.accountId];
+      const meU = curUser(), nameOf = id => (state.users.find(x => x.accountId === id) || {}).nickname;
+      let body = '';
+      if (mine === undefined) {
+        body = `<div style="font-size:0.84rem;color:var(--muted);">選一個最符合你的答案，等另一半也回答後就能同時揭曉！</div>` + q.o.map((o, i) => `<button class="opt-btn" onclick="answerHeart(${i})">${o}</button>`).join('');
+      } else if (theirs === undefined) {
+        body = `<div class="card-box">你選了：<strong>${q.o[mine]}</strong></div><div style="margin-top:10px;">⏳ 等待 ${me.nickname} 回答中…對方作答後，這裡就會顯示彼此的答案。</div>`;
+      } else {
+        const same = mine === theirs;
+        body = `<div class="cards-grid"><div class="card-box"><div style="font-size:0.8rem;color:var(--muted);">${meU.nickname}</div><strong>${q.o[mine]}</strong></div><div class="card-box"><div style="font-size:0.8rem;color:var(--muted);">${me.nickname}</div><strong>${q.o[theirs]}</strong></div></div>
+          <div style="margin-top:10px;font-weight:800;color:${same ? 'var(--green)' : 'var(--secondary)'};">${same ? '🎉 默契滿分！你們的答案一樣！' : '💡 答案不同，聊聊為什麼吧！'}</div>`;
+      }
+      const hist = Object.keys(state.heart || {}).sort().reverse().filter(x => x !== k && heartAns(x).player_1 !== undefined && heartAns(x).player_2 !== undefined).slice(0, 7);
+      return `<h3 style="margin:0 0 4px;">💓 今日心動時刻</h3>
+        <div style="font-size:0.8rem;color:var(--muted);">第 ${dayNumber()} 天・${k}　🔥 連續 ${heartStreak()} 天</div>
+        <div style="font-size:1.1rem;font-weight:900;margin:12px 0 6px;">${q.q}</div>${body}
+        ${hist.length ? `<details style="margin-top:14px;"><summary style="cursor:pointer;font-weight:800;">📜 過去的答案</summary>` + hist.map(x => { const hh = heartAns(x), qq = qForKey(x); return `<div style="padding:6px 0;border-bottom:1px dashed #f0dce7;font-size:0.84rem;"><strong>${x}</strong> ${qq.q}<br>${nameOf('player_1')}：${qq.o[hh.player_1]}　${nameOf('player_2')}：${qq.o[hh.player_2]} ${hh.player_1 === hh.player_2 ? '💞' : ''}</div>`; }).join('') + `</details>` : ''}`;
+    }
+    async function answerHeart(i) {
+      const k = todayKey();
+      state.heart = state.heart || {};
+      const h = state.heart[k] = state.heart[k] || {};
+      if (h[actor] !== undefined) return;
+      h[actor] = i;
+      const u = curUser(), other = otherUser();
+      SoundFX.wish();
+      addExp(20, `💓 ${u.nickname} 回答了今日心動時刻`);
+      if (h[other.accountId] !== undefined && h[other.accountId] === i && !h.bonus) {
+        h.bonus = true;
+        state.users.forEach(x => { x.coins += 80; });
+        addExp(40, `💞 今日心動時刻默契滿分！兩人各得 80 金幣`);
+      }
+      refreshModal(); render();
+      await syncWithUploadFirst(true);
+      refreshModal(); render();
+    }
+
+    /* ================= 愛心遊樂園 ================= */
+    const DATE_IDEAS = ['一起煮一頓晚餐', '散步 30 分鐘，不看手機', '互相說三個喜歡對方的地方', '一起看一部電影', '互傳一張今天的自拍', '一起規劃下一次旅行', '互相按摩肩膀 5 分鐘', '一起聽一首歌，說說感受', '寫下我們的三個小夢想', '視訊時一起吃同一種零食', '互相取一個可愛的新暱稱', '分享今天最開心的一件事', '一起拍一張合照', '畫一張對方的畫像', '說出一件一直想對對方說的話', '一起許一個願望'];
+    const SPIN_PRIZES = [
+      { w: 30, t: 'coins', v: 50, label: '💰 50 金幣' }, { w: 25, t: 'coins', v: 120, label: '💰 120 金幣' }, { w: 10, t: 'coins', v: 300, label: '💰 300 金幣' },
+      { w: 14, t: 'stam', v: 25, label: '⚡ 體力 +25' }, { w: 10, t: 'wood', v: 3, label: '🪵 木材 +3' }, { w: 8, t: 'exp', v: 60, label: '💖 愛心 EXP +60' }, { w: 3, t: 'rare', label: '🎁 神秘稀有物' }
+    ];
+    function renderPark() {
+      const game = (spot, icon, title, desc, fn) => `<div class="card-box"><div style="font-size:1.8rem;">${icon}</div><strong>${title}</strong><div style="font-size:0.8rem;color:var(--muted);margin:4px 0 8px;">${desc}</div><button class="btn btn-pink" data-spot="${spot}" onclick="${fn}">${SPOTS[spot].label}</button></div>`;
+      const me = curUser(), other = otherUser();
+      const notes = (state.notes || []).slice(0, 8).map(n => {
+        const mineN = n.from === actor, fromName = (state.users.find(x => x.accountId === n.from) || {}).nickname;
+        if (mineN) return `<div style="padding:6px 0;border-bottom:1px dashed #f0dce7;font-size:0.84rem;">📤 寄給 ${other.nickname}：<span data-notr="1">${esc(n.text)}</span> ${n.read ? '✅ 已讀' : '⏳ 未讀'}</div>`;
+        return n.read ? `<div style="padding:6px 0;border-bottom:1px dashed #f0dce7;font-size:0.84rem;">📥 ${fromName}：<span data-notr="1">${esc(n.text)}</span></div>`
+          : `<div style="padding:6px 0;border-bottom:1px dashed #f0dce7;font-size:0.84rem;">💌 收到 ${fromName} 的一封新信！ <button class="btn btn-green" onclick="readNote('${n.id}')">拆開閱讀（+15 EXP）</button></div>`;
+      }).join('');
+      return `<div class="cards-grid">
+        ${game('memory', '🃏', '愛心記憶翻牌', '翻開成對的圖案，步數越少獎勵越多！', 'startMemory()')}
+        ${game('hearts', '💗', '接愛心', '15 秒內點 💗 得分，小心別點到 💔！', 'startHearts()')}
+        ${game('spin', '🎡', '幸運轉盤', '金幣、體力、木材，還有機會轉到稀有物！', 'spinWheel()')}
+      </div>
+      <div id="gameArea" style="margin-top:12px;"></div>
+      <div class="card-box" style="margin-top:12px;"><strong>🎲 約會任務卡</strong>
+        <div style="font-size:0.8rem;color:var(--muted);margin:4px 0 8px;">抽一張現實中也能一起完成的小任務，完成後兩人都開心！</div>
+        <button class="btn btn-purple" data-spot="date" onclick="drawDate()">抽約會任務卡</button>
+        ${curDate !== null ? `<div style="margin-top:10px;padding:10px;border-radius:12px;background:#f6f0ff;font-weight:800;">🎴 ${DATE_IDEAS[curDate]}</div><button class="btn btn-green" style="margin-top:8px;" onclick="doneDate()">我們完成了！（+40 EXP / +100 金幣）</button>` : ''}
+      </div>
+      <div class="card-box" style="margin-top:12px;"><strong>💌 愛的小紙條</strong>
+        <div style="display:flex;gap:6px;margin:8px 0;flex-wrap:wrap;"><input type="text" id="noteInput" maxlength="80" placeholder="寫一句悄悄話給另一半…" style="flex:1;min-width:160px;" value="${esc(noteDraft)}" oninput="noteDraft=this.value" /><button class="btn btn-pink" onclick="sendNote()">寄出（+10 EXP）</button></div>
+        ${notes || '<div style="font-size:0.82rem;color:var(--muted);">還沒有小紙條，寫下第一張吧！</div>'}
+      </div>`;
+    }
+    async function sendNote() {
+      const txt = (noteDraft || '').trim();
+      if (!txt) return toast('先寫點什麼吧！');
+      const u = curUser(), d = new Date(Date.now() + 8 * 3600 * 1000).toISOString();
+      state.notes = state.notes || [];
+      state.notes.unshift({ id: 'N' + Date.now(), from: actor, text: txt.slice(0, 80), time: d.slice(0, 16).replace('T', ' '), read: false });
+      state.notes = state.notes.slice(0, 30);
+      noteDraft = '';
+      SoundFX.wish();
+      addExp(10, `${u.nickname} 寫了一張小紙條給 ${otherUser().nickname}`);
+      render(); await syncWithUploadFirst(true); render();
+    }
+    async function readNote(id) {
+      const n = (state.notes || []).find(x => x.id === id); if (!n || n.read) return;
+      n.read = true;
+      SoundFX.coin();
+      addExp(15, `${curUser().nickname} 讀了 ${otherUser().nickname} 的小紙條`);
+      render(); await syncWithUploadFirst(true); render();
+    }
+    function drawDate() {
+      if (busyGame) return;
+      if (!checkSpot('date')) return;
+      curDate = Math.floor(Math.random() * DATE_IDEAS.length);
+      SoundFX.wish(); render();
+    }
+    async function doneDate() {
+      if (curDate === null) return;
+      const u = curUser();
+      u.coins += 100; curDate = null;
+      SoundFX.harvest();
+      addExp(40, `${u.nickname} 完成了約會任務卡（+100 金幣）`);
+      render(); await syncWithUploadFirst(true); render();
+    }
+    /* --- 記憶翻牌 --- */
+    let memS = null;
+    function startMemory() {
+      if (busyGame || gTimer) return;
+      if (!checkSpot('memory')) return;
+      busyGame = true;
+      const icons = ['💖', '🌹', '🍓', '🐥', '🌻', '🎀', '⭐', '🍰'], deck = shuffle(icons.concat(icons));
+      memS = { deck, open: [], matched: 0, moves: 0, lock: false };
+      document.getElementById('gameArea').innerHTML = `<div class="card-box"><div>🃏 步數：<strong id="memMoves">0</strong></div><div class="mem-grid">` + deck.map((_, i) => `<button class="mem-card" id="mc${i}" onclick="flipMem(${i})">❓</button>`).join('') + `</div></div>`;
+      updateCdUI();
+    }
+    function flipMem(i) {
+      const m = memS; if (!m || m.lock) return;
+      const b = document.getElementById('mc' + i); if (!b || m.open.includes(i) || b.dataset.done) return;
+      b.textContent = m.deck[i]; b.classList.add('open'); m.open.push(i); SoundFX.step();
+      if (m.open.length === 2) {
+        m.moves++; document.getElementById('memMoves').textContent = m.moves;
+        const [a, c] = m.open;
+        if (m.deck[a] === m.deck[c]) {
+          [a, c].forEach(k => { const e = document.getElementById('mc' + k); e.dataset.done = '1'; e.classList.add('done'); });
+          m.open = []; m.matched++; SoundFX.coin();
+          if (m.matched === 8) finishMemory();
+        } else {
+          m.lock = true;
+          setTimeout(() => { [a, c].forEach(k => { const e = document.getElementById('mc' + k); if (e) { e.textContent = '❓'; e.classList.remove('open'); } }); m.open = []; m.lock = false; }, 700);
+        }
+      }
+    }
+    async function finishMemory() {
+      const m = memS; memS = null;
+      const u = curUser(), coins = Math.max(30, 160 - m.moves * 6);
+      u.coins += coins; SoundFX.harvest();
+      toast(`🎉 完成！${m.moves} 步，獲得 ${coins} 金幣`);
+      addExp(35, `${u.nickname} 完成記憶翻牌（${m.moves} 步，+${coins} 金幣）`);
+      busyGame = false; render(); await syncWithUploadFirst(true); render();
+    }
+    /* --- 接愛心 --- */
+    let hTimer = null, hSpawn = null, hScore = 0, hLeft = 0;
+    function startHearts() {
+      if (busyGame || gTimer) return;
+      if (!checkSpot('hearts')) return;
+      busyGame = true; hScore = 0; hLeft = 15;
+      document.getElementById('gameArea').innerHTML = `<div class="card-box">💗 得分：<strong id="hScore">0</strong>　⏱ <strong id="hLeft">15</strong>s<div class="arena" id="heartArena" style="background:linear-gradient(180deg,#ffe4f0,#ffc2dd);border-color:#ff9ec7;"></div></div>`;
+      updateCdUI();
+      hSpawn = setInterval(() => {
+        const ar = document.getElementById('heartArena'); if (!ar) return;
+        const good = Math.random() < 0.72, b = document.createElement('div');
+        b.className = 'bug'; b.textContent = good ? '💗' : '💔';
+        b.style.left = (5 + Math.random() * 85) + '%'; b.style.top = (5 + Math.random() * 80) + '%';
+        b.onclick = () => { hScore = Math.max(0, hScore + (good ? 1 : -2)); document.getElementById('hScore').textContent = hScore; good ? SoundFX.coin() : SoundFX.step(); b.remove(); };
+        ar.appendChild(b); setTimeout(() => b.remove(), 1300);
+      }, 450);
+      hTimer = setInterval(() => { hLeft--; const e = document.getElementById('hLeft'); if (e) e.textContent = hLeft; if (hLeft <= 0) finishHearts(); }, 1000);
+    }
+    async function finishHearts() {
+      clearInterval(hTimer); clearInterval(hSpawn);
+      const u = curUser(), coins = hScore * 6;
+      u.coins += coins; SoundFX.harvest();
+      toast(`💗 得分 ${hScore}，獲得 ${coins} 金幣`);
+      addExp(10 + hScore * 3, `${u.nickname} 接愛心獲得 ${hScore} 分（+${coins} 金幣）`);
+      busyGame = false; render(); await syncWithUploadFirst(true); render();
+    }
+    /* --- 幸運轉盤 --- */
+    async function spinWheel() {
+      if (busyGame || gTimer) return;
+      if (!checkSpot('spin')) return;
+      busyGame = true;
+      document.getElementById('gameArea').innerHTML = `<div class="card-box" style="text-align:center;"><div id="spinFace" style="font-size:3.2rem;">🎡</div><div id="spinTxt" style="font-weight:800;margin-top:6px;">轉啊轉…</div></div>`;
+      updateCdUI();
+      const faces = ['💰', '⚡', '🪵', '💖', '🎁', '🌟']; let n = 0;
+      const iv = setInterval(() => {
+        const f = document.getElementById('spinFace'); if (f) f.textContent = faces[n % faces.length]; n++; SoundFX.step();
+        if (n > 16) { clearInterval(iv); settleSpin(); }
+      }, 90);
+    }
+    function settleSpin() {
+      const u = curUser(); let r = Math.random() * SPIN_PRIZES.reduce((t, x) => t + x.w, 0), pr = SPIN_PRIZES[0];
+      for (const x of SPIN_PRIZES) { r -= x.w; if (r <= 0) { pr = x; break; } }
+      let label = pr.label;
+      if (pr.t === 'coins') u.coins += pr.v;
+      else if (pr.t === 'stam') { regenStamina(u); u.stamina = Math.min(maxStamina(u), u.stamina + pr.v); }
+      else if (pr.t === 'wood') state.couple.wood += pr.v;
+      else if (pr.t === 'rare') { const rs = FINDS.filter(f => f.spot === 'rare'), f = rs[Math.floor(Math.random() * rs.length)]; const first = codexAdd('finds', f.id); label = `🎁 ${f.icon}${f.name}${first ? '（新收藏！）' : ''}`; }
+      const face = document.getElementById('spinFace'), txt = document.getElementById('spinTxt');
+      if (face) face.textContent = '🎉'; if (txt) txt.textContent = `獲得：${label}`;
+      SoundFX.harvest();
+      addExp(pr.t === 'exp' ? pr.v : 10, `${u.nickname} 轉到了 ${label}`);
+      busyGame = false;
+      setTimeout(async () => { if (!busyGame) { render(); await syncWithUploadFirst(true); render(); } }, 2200);
+    }
+
+    /* ================= 多語系（中文 / English / ไทย） ================= */
+    let lang = localStorage.getItem('couple_25d_lang') || 'zh';
+    const TR_ROWS = [], TR_RULES = [];
+    const PUNC = { '（': ' (', '）': ') ', '：': ': ', '，': ', ', '、': ', ', '！': '! ', '？': '? ', '・': ' · ', '。': '. ', '～': '~' };
+    const TR = { en: { map: new Map(), re: null, cache: new Map(), rules: [] }, th: { map: new Map(), re: null, cache: new Map(), rules: [] } };
+TR_ROWS.push(...[["甜心蘿蔔", "Sweet Carrot", "แครอทหวาน"], ["戀愛草莓", "Love Strawberry", "สตรอว์เบอร์รีรัก"], ["玫瑰花束", "Rose Bouquet", "ช่อกุหลาบ"], ["向日葵", "Sunflower", "ทานตะวัน"], ["甜玉米", "Sweet Corn", "ข้าวโพดหวาน"], ["紅番茄", "Red Tomato", "มะเขือเทศ"], ["馬鈴薯", "Potato", "มันฝรั่ง"], ["紫茄子", "Eggplant", "มะเขือม่วง"], ["小黃瓜", "Cucumber", "แตงกวา"], ["高麗菜", "Cabbage", "กะหล่ำปลี"], ["小辣椒", "Chili Pepper", "พริก"], ["大蒜", "Garlic", "กระเทียม"], ["洋蔥", "Onion", "หอมใหญ่"], ["西瓜", "Watermelon", "แตงโม"], ["葡萄", "Grapes", "องุ่น"], ["水蜜桃", "Peach", "พีช"], ["櫻桃", "Cherry", "เชอร์รี่"], ["檸檬", "Lemon", "เลมอน"], ["橘子", "Tangerine", "ส้ม"], ["蘋果", "Apple", "แอปเปิ้ล"], ["水梨", "Pear", "ลูกแพร์"], ["芒果", "Mango", "มะม่วง"], ["鳳梨", "Pineapple", "สับปะรด"], ["奇異果", "Kiwi", "กีวี"], ["藍莓", "Blueberry", "บลูเบอร์รี่"], ["椰子", "Coconut", "มะพร้าว"], ["香蕉", "Banana", "กล้วย"], ["蘑菇", "Mushroom", "เห็ด"], ["鬱金香", "Tulip", "ทิวลิป"], ["薰衣草", "Lavender", "ลาเวนเดอร์"], ["雛菊", "Daisy", "เดซี่"], ["朱槿", "Hibiscus", "ชบา"], ["蓮花", "Lotus", "ดอกบัว"], ["南瓜", "Pumpkin", "ฟักทอง"], ["栗子", "Chestnut", "เกาลัด"], ["花生", "Peanut", "ถั่วลิสง"], ["紅豆", "Red Bean", "ถั่วแดง"], ["薄荷", "Mint", "สะระแหน่"], ["幸運草", "Lucky Clover", "โคลเวอร์นำโชค"], ["幸福竹", "Lucky Bamboo", "ไผ่นำโชค"], ["仙人掌", "Cactus", "กระบองเพชร"], ["棕櫚果", "Palm Fruit", "ผลปาล์ม"], ["愛心茶葉", "Love Tea Leaf", "ใบชารัก"], ["永恆花束", "Eternal Bouquet", "ช่อดอกไม้นิรันดร์"], ["小雞", "Chick", "ลูกไก่"], ["綿羊", "Sheep", "แกะ"], ["羊駝", "Alpaca", "อัลปาก้า"], ["乳牛", "Cow", "วัว"], ["小豬", "Piglet", "ลูกหมู"], ["山羊", "Goat", "แพะ"], ["公雞", "Rooster", "ไก่ตัวผู้"], ["小馬", "Pony", "ม้าโพนี่"], ["鴨子", "Duck", "เป็ด"], ["兔子", "Rabbit", "กระต่าย"], ["貓咪", "Kitten", "ลูกแมว"], ["小狗", "Puppy", "ลูกสุนัข"], ["松鼠", "Squirrel", "กระรอก"], ["火雞", "Turkey", "ไก่งวง"], ["天鵝", "Swan", "หงส์"], ["鸚鵡", "Parrot", "นกแก้ว"], ["烏龜", "Turtle", "เต่า"], ["倉鼠", "Hamster", "แฮมสเตอร์"], ["刺蝟", "Hedgehog", "เม่น"], ["狐狸", "Fox", "จิ้งจอก"], ["小鹿", "Deer", "กวาง"], ["熊貓", "Panda", "แพนด้า"], ["無尾熊", "Koala", "โคอาล่า"], ["企鵝", "Penguin", "เพนกวิน"], ["火鶴", "Flamingo", "ฟลามิงโก"], ["孔雀", "Peacock", "นกยูง"], ["小象", "Elephant", "ช้าง"], ["長頸鹿", "Giraffe", "ยีราฟ"], ["斑馬", "Zebra", "ม้าลาย"], ["海豹", "Seal", "แมวน้ำ"], ["海豚", "Dolphin", "โลมา"], ["獨角獸", "Unicorn", "ยูนิคอร์น"], ["小龍", "Dragon", "มังกร"], ["雞蛋", "Egg", "ไข่"], ["羊毛", "Wool", "ขนแกะ"], ["愛心毛線", "Love Yarn", "ไหมพรมรัก"], ["牛奶", "Milk", "นม"], ["松露", "Truffle", "เห็ดทรัฟเฟิล"], ["羊乳酪", "Goat Cheese", "ชีสแพะ"], ["晨啼金幣", "Dawn Coin", "เหรียญยามเช้า"], ["馬鬃髮飾", "Mane Ribbon", "ริบบิ้นแผงคอ"], ["鴨蛋", "Duck Egg", "ไข่เป็ด"], ["兔毛球", "Bunny Fluff", "ปุยกระต่าย"], ["貓咪小禮物", "Cat Gift", "ของขวัญจากแมว"], ["忠誠之骨", "Loyal Bone", "กระดูกแสนซื่อสัตย์"], ["松果", "Pine Cone", "ลูกสน"], ["火雞蛋", "Turkey Egg", "ไข่ไก่งวง"], ["天鵝羽毛", "Swan Feather", "ขนหงส์"], ["彩色羽毛", "Colorful Feather", "ขนนกหลากสี"], ["龜殼飾品", "Turtle Shell Charm", "ที่ห้อยกระดองเต่า"], ["瓜子", "Sunflower Seed", "เมล็ดทานตะวัน"], ["蘋果刺球", "Apple Spike Ball", "ลูกบอลหนามแอปเปิ้ล"], ["狐狸尾飾", "Fox Tail Charm", "ที่ห้อยหางจิ้งจอก"], ["鹿角飾品", "Antler Charm", "เครื่องประดับเขากวาง"], ["竹編品", "Bamboo Craft", "งานจักสานไผ่"], ["尤加利茶", "Eucalyptus Tea", "ชายูคาลิปตัส"], ["冰晶", "Ice Crystal", "ผลึกน้ำแข็ง"], ["粉色羽毛", "Pink Feather", "ขนนกสีชมพู"], ["孔雀羽扇", "Peacock Fan", "พัดขนนกยูง"], ["噴泉水珠", "Fountain Droplet", "หยดน้ำพุ"], ["葉雕", "Leaf Carving", "ของแกะสลักใบไม้"], ["條紋布料", "Striped Cloth", "ผ้าลายทาง"], ["珍珠貝", "Pearl Shell", "หอยไข่มุก"], ["閃亮泡泡", "Shiny Bubble", "ฟองสบู่แวววาว"], ["星星粉", "Star Dust", "ผงดาว"], ["龍之鱗片", "Dragon Scale", "เกล็ดมังกร"], ["微笑稻草人", "Smiling Scarecrow", "หุ่นไล่กาแสนยิ้ม"], ["粉紅花籬笆", "Pink Flower Fence", "รั้วดอกไม้สีชมพู"], ["愛心小噴泉", "Heart Fountain", "น้ำพุหัวใจ"], ["牧場小秋千", "Ranch Swing", "ชิงช้าฟาร์ม"], ["星星燈串", "Star String Lights", "ไฟประดับดาว"], ["慶典彩旗", "Festival Flags", "ธงเทศกาล"], ["玫瑰花拱門", "Rose Arch", "ซุ้มกุหลาบ"], ["浪漫燈籠", "Romantic Lantern", "โคมไฟโรแมนติก"], ["向日葵花圃", "Sunflower Bed", "แปลงทานตะวัน"], ["蜜蜂巢箱", "Bee Hive", "รังผึ้ง"], ["木質水桶", "Wooden Bucket", "ถังไม้"], ["小工具棚", "Tool Shed", "เพิงเครื่องมือ"], ["彩虹風車旗", "Rainbow Windmill Flag", "ธงกังหันสายรุ้ง"], ["蝴蝶花叢", "Butterfly Flowers", "ดอกไม้ผีเสื้อ"], ["蘑菇小徑", "Mushroom Path", "ทางเดินเห็ด"], ["木樁小路", "Stump Path", "ทางเดินตอไม้"], ["田邊燈籠", "Field Lantern", "โคมไฟริมนา"], ["野餐籃墊", "Picnic Mat", "เสื่อปิกนิก"], ["小風箏", "Little Kite", "ว่าวน้อย"], ["愛心果樹", "Heart Fruit Tree", "ต้นไม้ผลหัวใจ"], ["瓢蟲雕像", "Ladybug Statue", "รูปปั้นเต่าทอง"], ["小木推車", "Wooden Cart", "รถเข็นไม้"], ["田邊風鈴", "Field Wind Chime", "กระดิ่งลมริมนา"], ["田邊長椅", "Field Bench", "ม้านั่งริมนา"], ["金黃麥束", "Golden Wheat Bundle", "ฟ่อนข้าวสาลีทอง"], ["太陽能小燈", "Solar Lamp", "ไฟโซลาร์"], ["盆栽花架", "Flower Pot Stand", "ชั้นกระถางต้นไม้"], ["白鴿鴿舍", "Dove Cote", "เล้านกพิราบ"], ["玫瑰花牆", "Rose Wall", "กำแพงกุหลาบ"], ["乾草堆", "Haystack", "กองฟาง"], ["青蛙噴泉", "Frog Fountain", "น้ำพุกบ"], ["豐收小帳篷", "Harvest Tent", "เต็นท์เก็บเกี่ยว"], ["小雞舍", "Chicken Coop", "เล้าไก่"], ["暖暖鳥巢", "Cozy Bird Nest", "รังนกอบอุ่น"], ["胡蘿蔔飼料槽", "Carrot Feeder", "รางอาหารแครอท"], ["動物飲水池", "Animal Pond", "บ่อน้ำสัตว์"], ["乾草軟床", "Hay Bed", "เตียงฟาง"], ["毛線球玩具", "Yarn Ball Toy", "ของเล่นก้อนไหมพรม"], ["彩色小球", "Colorful Ball", "ลูกบอลหลากสี"], ["繩索拔河", "Tug Rope", "เชือกชักเย่อ"], ["牧草花圃", "Pasture Flowers", "ทุ่งดอกไม้"], ["木製圍欄", "Wooden Fence", "รั้วไม้"], ["浪漫柵欄門", "Romantic Gate", "ประตูโรแมนติก"], ["彩帶裝飾", "Ribbon Decor", "ริบบิ้นประดับ"], ["小溜滑梯", "Mini Slide", "สไลเดอร์เล็ก"], ["動物小鏡子", "Animal Mirror", "กระจกสัตว์"], ["腳印步道", "Paw Path", "ทางรอยเท้า"], ["月亮夜燈", "Moon Night Light", "ไฟกลางคืนรูปจันทร์"], ["音樂盒", "Music Box", "กล่องดนตรี"], ["蛋蛋收集籃", "Egg Basket", "ตะกร้าเก็บไข่"], ["迷你羊駝屋", "Mini Alpaca House", "บ้านอัลปาก้าจิ๋ว"], ["遮陽傘", "Parasol", "ร่มกันแดด"], ["草編圓窩", "Woven Nest", "รังสานฟาง"], ["蜂蜜補給站", "Honey Station", "สถานีน้ำผึ้ง"], ["旋轉木馬", "Carousel", "ม้าหมุน"], ["玫瑰花柱", "Rose Pillars", "เสากุหลาบ"], ["彩繪玻璃燈", "Stained Glass Lamp", "โคมกระจกสี"], ["廣場大噴泉", "Grand Fountain", "น้ำพุใหญ่"], ["愛心路標", "Heart Signpost", "ป้ายหัวใจ"], ["慶典喇叭", "Festival Horn", "แตรเทศกาล"], ["氣球拱門", "Balloon Arch", "ซุ้มลูกโป่ง"], ["燭光步道", "Candle Path", "ทางเทียน"], ["雙人長椅", "Love Bench", "ม้านั่งคู่"], ["廣場大樹", "Plaza Big Tree", "ต้นไม้ใหญ่กลางเมือง"], ["幸福鐘", "Happiness Bell", "ระฆังแห่งความสุข"], ["情書郵筒", "Love Letter Mailbox", "ตู้จดหมายรัก"], ["市集帳篷", "Market Tent", "เต็นท์ตลาด"], ["彩磚地面", "Colorful Tiles", "กระเบื้องหลากสี"], ["星光路燈", "Starlight Lamp", "ไฟแสงดาว"], ["天使雕像", "Angel Statue", "รูปปั้นนางฟ้า"], ["櫻花樹", "Cherry Blossom Tree", "ต้นซากุระ"], ["愛情時鐘", "Love Clock", "นาฬิการัก"], ["小舞台", "Mini Stage", "เวทีเล็ก"], ["許願禮物堆", "Wish Gift Pile", "กองของขวัญพร"], ["彩虹拱橋", "Rainbow Bridge", "สะพานรุ้ง"], ["花環大門", "Wreath Gate", "ประตูพวงหรีด"], ["心形雕塑", "Heart Sculpture", "ประติมากรรมหัวใจ"], ["煙火台", "Fireworks Stand", "แท่นดอกไม้ไฟ"], ["貝殼", "Seashell", "เปลือกหอย"], ["海星", "Starfish", "ดาวทะเล"], ["小螃蟹", "Little Crab", "ปูตัวน้อย"], ["珊瑚", "Coral", "ปะการัง"], ["河豚", "Pufferfish", "ปลาปักเป้า"], ["水母", "Jellyfish", "แมงกะพรุน"], ["珍珠貝", "Pearl Oyster", "หอยมุก"], ["章魚", "Octopus", "ปลาหมึกยักษ์"], ["小石頭", "Pebble", "ก้อนหินเล็ก"], ["高山花", "Alpine Flower", "ดอกไม้ภูเขา"], ["山菇", "Mountain Mushroom", "เห็ดภูเขา"], ["野蜂蜜", "Wild Honey", "น้ำผึ้งป่า"], ["冰晶", "Ice Crystal", "ผลึกน้ำแข็ง"], ["老鷹羽毛", "Eagle Feather", "ขนนกอินทรี"], ["水晶", "Crystal", "คริสตัล"], ["白鹿", "White Deer", "กวางขาว"], ["落葉", "Fallen Leaf", "ใบไม้ร่วง"], ["橡實", "Acorn", "ลูกโอ๊ก"], ["毛毛蟲", "Caterpillar", "หนอนผีเสื้อ"], ["蝴蝶", "Butterfly", "ผีเสื้อ"], ["鳥巢", "Bird Nest", "รังนก"], ["藥草", "Herb", "สมุนไพร"], ["貓頭鷹", "Owl", "นกฮูก"], ["螢火蟲", "Firefly", "หิ่งห้อย"], ["流星碎片", "Meteor Fragment", "เศษดาวตก"], ["彩虹水晶", "Rainbow Crystal", "คริสตัลสายรุ้ง"], ["小精靈翅粉", "Fairy Dust", "ผงนางฟ้า"], ["漂流瓶", "Message Bottle", "ขวดสาส์น"], ["金鯉魚鱗", "Golden Carp Scale", "เกล็ดปลาคาร์ปทอง"], ["四葉幸運草", "Four-leaf Clover", "โคลเวอร์สี่ใบ"], ["愛心彗星", "Heart Comet", "ดาวหางหัวใจ"], ["古老鑰匙", "Ancient Key", "กุญแจโบราณ"], ["人魚眼淚", "Mermaid Tear", "น้ำตานางเงือก"], ["月光花", "Moonflower", "ดอกไม้แสงจันทร์"], ["神秘龍蛋", "Mystery Dragon Egg", "ไข่มังกรปริศนา"], ["命運水晶", "Crystal of Fate", "คริสตัลแห่งโชคชะตา"], ["流星雨", "Meteor Shower", "ฝนดาวตก"], ["彩虹出現", "Rainbow Appears", "สายรุ้งปรากฏ"], ["迷路的小精靈", "Lost Little Fairy", "นางฟ้าตัวน้อยหลงทาง"], ["神秘漂流瓶", "Mysterious Message Bottle", "ขวดสาส์นปริศนา"], ["金色鯉魚", "Golden Carp", "ปลาคาร์ปสีทอง"], ["幸運四葉草", "Lucky Four-leaf Clover", "โคลเวอร์สี่ใบนำโชค"], ["愛心彗星", "Heart Comet", "ดาวหางหัวใจ"], ["古老寶箱", "Ancient Treasure Chest", "หีบสมบัติโบราณ"], ["人魚的眼淚", "Mermaid's Tear", "น้ำตานางเงือก"], ["月光花盛開", "Moonflower Blooms", "ดอกไม้แสงจันทร์บาน"], ["神秘龍蛋", "Mysterious Dragon Egg", "ไข่มังกรปริศนา"], ["神秘旅行商人", "Mysterious Traveling Merchant", "พ่อค้าเดินทางปริศนา"], ["夜空劃過一陣流星雨，你們一起許了願，一塊閃亮的碎片落在手心。", "A meteor shower streaks across the night sky. You make a wish together, and a sparkling fragment lands in your hand.", "ฝนดาวตกพาดผ่านท้องฟ้ายามค่ำคืน พวกคุณขอพรด้วยกัน และเศษดาวระยิบระยับตกลงในมือ"], ["雨後天空出現一道巨大的彩虹，彩虹的盡頭閃著水晶的光芒。", "A giant rainbow appears after the rain, and crystals glitter at its end.", "หลังฝนตกมีสายรุ้งยักษ์ปรากฏขึ้น ปลายสายรุ้งมีคริสตัลส่องประกาย"], ["一隻迷路的小精靈被你們帶回家，臨走前留下了翅膀上的閃粉。", "A lost little fairy follows you home and leaves some glitter dust from her wings before leaving.", "นางฟ้าตัวน้อยที่หลงทางตามพวกคุณกลับบ้าน ก่อนจากไปทิ้งผงประกายจากปีกไว้ให้"], ["海浪沖來一只漂流瓶，裡面裝著一封來自遠方的祝福信。", "A message bottle washes ashore with a blessing letter from far away inside.", "คลื่นพัดขวดสาส์นมาเกยฝั่ง ข้างในมีจดหมายอวยพรจากแดนไกล"], ["小河裡跳出一條金色鯉魚，牠掉落了一片閃亮的鱗片。", "A golden carp jumps out of the stream and drops a shiny scale.", "ปลาคาร์ปสีทองกระโดดขึ้นจากลำธาร แล้วทำเกล็ดแวววาวหล่นลงมา"], ["草地上發現了傳說中的四葉幸運草，據說會帶來一整年的好運。", "You found the legendary four-leaf clover, said to bring a whole year of luck.", "พบโคลเวอร์สี่ใบในตำนาน ว่ากันว่านำโชคดีตลอดทั้งปี"], ["一顆心形的彗星掠過夜空，留下了溫暖的碎片。", "A heart-shaped comet sweeps across the sky, leaving a warm fragment behind.", "ดาวหางรูปหัวใจพาดผ่านท้องฟ้า ทิ้งเศษอบอุ่นไว้ให้"], ["土裡挖出一個古老的寶箱，裡面躺著一把刻著愛心的鑰匙。", "You dig up an ancient chest holding a key engraved with a heart.", "ขุดพบหีบสมบัติโบราณ ข้างในมีกุญแจสลักรูปหัวใจ"], ["月光下的海面浮現人魚的身影，她送給你們一滴珍珠般的眼淚。", "A mermaid appears on the moonlit sea and gives you a pearl-like tear.", "นางเงือกปรากฏบนทะเลใต้แสงจันทร์ และมอบหยดน้ำตาดั่งไข่มุกให้"], ["深夜裡月光花悄悄盛開，只有相愛的人才看得見它。", "Moonflowers bloom quietly at midnight - only people in love can see them.", "ดอกไม้แสงจันทร์บานเงียบ ๆ ยามดึก มีเพียงคนที่รักกันเท่านั้นที่มองเห็น"], ["山洞深處有一顆微微發熱的蛋，似乎正等著被愛孵化。", "Deep in a cave lies a slightly warm egg, waiting to be hatched with love.", "ในถ้ำลึกมีไข่ใบหนึ่งอุ่นเล็กน้อย เหมือนรอให้ความรักฟักเป็นตัว"], ["一位旅行商人路過，把珍藏的水晶球送給了這對甜蜜的情侶。", "A traveling merchant passes by and gifts a treasured crystal ball to the sweet couple.", "พ่อค้าเดินทางผ่านมาและมอบลูกแก้วคริสตัลสุดล้ำค่าให้คู่รักแสนหวาน"], ["一起煮一頓晚餐", "Cook dinner together", "ทำอาหารเย็นด้วยกัน"], ["散步 30 分鐘，不看手機", "Walk for 30 minutes without phones", "เดินเล่น 30 นาทีโดยไม่เล่นมือถือ"], ["互相說三個喜歡對方的地方", "Tell each other three things you love about each other", "บอกสามสิ่งที่ชอบในตัวกันและกัน"], ["一起看一部電影", "Watch a movie together", "ดูหนังด้วยกัน"], ["互傳一張今天的自拍", "Send each other a selfie from today", "ส่งเซลฟี่ของวันนี้ให้กัน"], ["一起規劃下一次旅行", "Plan your next trip together", "วางแผนเที่ยวครั้งต่อไปด้วยกัน"], ["互相按摩肩膀 5 分鐘", "Give each other a 5-minute shoulder massage", "นวดไหล่ให้กัน 5 นาที"], ["一起聽一首歌，說說感受", "Listen to a song together and share your feelings", "ฟังเพลงด้วยกันแล้วบอกความรู้สึก"], ["寫下我們的三個小夢想", "Write down our three little dreams", "เขียนความฝันเล็ก ๆ สามข้อของเรา"], ["視訊時一起吃同一種零食", "Eat the same snack together on a video call", "กินขนมอย่างเดียวกันตอนวิดีโอคอล"], ["互相取一個可愛的新暱稱", "Give each other a cute new nickname", "ตั้งชื่อเล่นน่ารักใหม่ให้กัน"], ["分享今天最開心的一件事", "Share the happiest thing from today", "แชร์เรื่องที่มีความสุขที่สุดของวันนี้"], ["一起拍一張合照", "Take a photo together", "ถ่ายรูปคู่กัน"], ["畫一張對方的畫像", "Draw a portrait of each other", "วาดภาพเหมือนของกันและกัน"], ["說出一件一直想對對方說的話", "Say something you've always wanted to tell them", "พูดสิ่งที่อยากบอกเขามาตลอด"], ["一起許一個願望", "Make a wish together", "อธิษฐานด้วยกันหนึ่งข้อ"], ["愛心噴泉", "Heart Fountain", "น้ำพุหัวใจ"], ["愛情教堂", "Love Chapel", "โบสถ์แห่งรัก"], ["摩天輪", "Ferris Wheel", "ชิงช้าสวรรค์"], ["夢幻城堡", "Dream Castle", "ปราสาทแห่งฝัน"], ["愛情塔", "Love Tower", "หอคอยแห่งรัก"], ["彩虹橋", "Rainbow Bridge", "สะพานรุ้ง"], ["煙火廣場", "Fireworks Plaza", "ลานดอกไม้ไฟ"], ["星空火箭", "Starry Rocket", "จรวดดาว"], ["銀河花園", "Galaxy Garden", "สวนกาแล็กซี"], ["永恆王座", "Eternal Throne", "บัลลังก์นิรันดร์"], ["約會最想去哪裡？", "Where would you most like to go on a date?", "อยากไปเดทที่ไหนมากที่สุด?"], ["海邊", "Beach", "ชายหาด"], ["山上", "Mountain", "ภูเขา"], ["咖啡廳", "Cafe", "คาเฟ่"], ["遊樂園", "Amusement park", "สวนสนุก"], ["今天最想吃什麼？", "What do you most want to eat today?", "วันนี้อยากกินอะไรที่สุด?"], ["火鍋", "Hot pot", "หม้อไฟ"], ["甜點", "Dessert", "ของหวาน"], ["小吃", "Street snacks", "อาหารริมทาง"], ["在家煮", "Cook at home", "ทำกินที่บ้าน"], ["如果突然放一天假，你想？", "If you suddenly got a day off, you would...", "ถ้าจู่ ๆ ได้หยุดหนึ่งวัน คุณจะ..."], ["睡到飽", "Sleep in", "นอนให้เต็มอิ่ม"], ["一起旅行", "Travel together", "เที่ยวด้วยกัน"], ["看電影", "Watch a movie", "ดูหนัง"], ["逛街", "Go shopping", "ช้อปปิ้ง"], ["你比較喜歡哪種天氣？", "Which weather do you prefer?", "ชอบอากาศแบบไหนมากกว่ากัน?"], ["晴天", "Sunny", "แดดจ้า"], ["下雨", "Rainy", "ฝนตก"], ["陰天", "Cloudy", "ครึ้มฟ้า"], ["下雪", "Snowy", "หิมะ"], ["另一半心情不好時，你會？", "When your partner is upset, you will...", "เวลาอีกฝ่ายอารมณ์ไม่ดี คุณจะ..."], ["給個擁抱", "Give a hug", "กอด"], ["給對方空間", "Give them space", "ให้พื้นที่ส่วนตัว"], ["買好吃的", "Buy something yummy", "ซื้อของอร่อยให้"], ["好好聊聊", "Talk it out", "คุยกันดี ๆ"], ["你最喜歡的相處方式？", "Your favorite way to spend time together?", "วิธีใช้เวลาร่วมกันที่ชอบที่สุด?"], ["一起聊天", "Chatting", "คุยกัน"], ["各做各的但在一起", "Together but doing our own thing", "อยู่ด้วยกันแต่ทำของใครของมัน"], ["一起玩遊戲", "Playing games", "เล่นเกมด้วยกัน"], ["一起運動", "Exercising", "ออกกำลังกายด้วยกัน"], ["想一起養哪種寵物？", "Which pet would you like to raise together?", "อยากเลี้ยงสัตว์อะไรด้วยกัน?"], ["貓", "Cat", "แมว"], ["狗", "Dog", "สุนัข"], ["兔子", "Rabbit", "กระต่าย"], ["不養", "None", "ไม่เลี้ยง"], ["理想的紀念日禮物？", "Your ideal anniversary gift?", "ของขวัญวันครบรอบในอุดมคติ?"], ["手寫信", "Handwritten letter", "จดหมายเขียนด้วยมือ"], ["小飾品", "Small accessory", "เครื่องประดับชิ้นเล็ก"], ["一頓大餐", "A big meal", "มื้ออาหารสุดพิเศษ"], ["一趟旅行", "A trip", "การเดินทางหนึ่งทริป"], ["早晨的你是？", "In the morning you are...", "ตอนเช้าคุณเป็นคนแบบไหน?"], ["早起鳥", "An early bird", "ตื่นเช้า"], ["愛賴床", "A sleep-in lover", "ขี้เซา"], ["看心情", "Depends on my mood", "แล้วแต่อารมณ์"], ["最想一起學什麼？", "What would you most like to learn together?", "อยากเรียนอะไรด้วยกันมากที่สุด?"], ["做料理", "Cooking", "ทำอาหาร"], ["跳舞", "Dancing", "เต้น"], ["潛水", "Diving", "ดำน้ำ"], ["樂器", "An instrument", "เล่นดนตรี"], ["一起看電影你想看？", "Which movie would you like to watch together?", "อยากดูหนังแนวไหนด้วยกัน?"], ["愛情片", "Romance", "หนังรัก"], ["喜劇片", "Comedy", "หนังตลก"], ["恐怖片", "Horror", "หนังสยองขวัญ"], ["動畫片", "Animation", "แอนิเมชัน"], ["睡前最想做什麼？", "What do you most want to do before bed?", "ก่อนนอนอยากทำอะไรที่สุด?"], ["聊天", "Chat", "คุยกัน"], ["看劇", "Watch a series", "ดูซีรีส์"], ["擁抱", "Cuddle", "กอดกัน"], ["滑手機", "Scroll my phone", "เล่นมือถือ"], ["想像中未來的家是？", "What does your future home look like?", "บ้านในอนาคตที่จินตนาการไว้คือ?"], ["海邊小屋", "Beach cottage", "กระท่อมริมทะเล"], ["城市公寓", "City apartment", "อพาร์ตเมนต์ในเมือง"], ["山林木屋", "Forest cabin", "กระท่อมในป่าเขา"], ["有花園的房子", "House with a garden", "บ้านที่มีสวน"], ["你最喜歡對方的哪一點？", "What do you like most about your partner?", "ชอบอะไรในตัวอีกฝ่ายมากที่สุด?"], ["笑容", "Smile", "รอยยิ้ม"], ["溫柔", "Gentleness", "ความอ่อนโยน"], ["幽默", "Humor", "อารมณ์ขัน"], ["努力", "Hard work", "ความพยายาม"], ["一起旅行最想去哪？", "Where would you most like to travel together?", "อยากไปเที่ยวที่ไหนด้วยกันมากที่สุด?"], ["日本", "Japan", "ญี่ปุ่น"], ["泰國", "Thailand", "ไทย"], ["歐洲", "Europe", "ยุโรป"], ["台灣", "Taiwan", "ไต้หวัน"], ["吵架後你通常會？", "After an argument, you usually...", "หลังทะเลาะกัน คุณมักจะ..."], ["先道歉", "Apologize first", "ขอโทษก่อน"], ["等對方", "Wait for them", "รอให้อีกฝ่ายมา"], ["傳訊息", "Send a message", "ส่งข้อความ"], ["買宵夜", "Buy a late-night snack", "ซื้อของกินดึก"], ["最想一起完成的事？", "What do you most want to achieve together?", "อยากทำอะไรให้สำเร็จด้วยกันมากที่สุด?"], ["環遊世界", "Travel the world", "เที่ยวรอบโลก"], ["買房子", "Buy a house", "ซื้อบ้าน"], ["開一間店", "Open a shop", "เปิดร้านสักร้าน"], ["看極光", "See the aurora", "ดูแสงเหนือ"], ["你的充電方式是？", "How do you recharge?", "คุณชาร์จพลังด้วยวิธีไหน?"], ["睡覺", "Sleeping", "นอนหลับ"], ["吃美食", "Eating good food", "กินของอร่อย"], ["跟你在一起", "Being with you", "อยู่กับเธอ"], ["獨處", "Being alone", "อยู่คนเดียว"], ["最想在哪天慶祝？", "On which day would you most like to celebrate?", "อยากฉลองในวันไหนมากที่สุด?"], ["生日", "Birthday", "วันเกิด"], ["紀念日", "Anniversary", "วันครบรอบ"], ["跨年", "New Year's Eve", "คืนส่งท้ายปีเก่า"], ["隨時", "Anytime", "ได้ทุกเมื่อ"], ["今天的心情顏色是？", "What is your mood color today?", "สีของอารมณ์วันนี้คือ?"], ["粉紅", "Pink", "สีชมพู"], ["天藍", "Sky blue", "สีฟ้า"], ["鵝黃", "Light yellow", "สีเหลืองอ่อน"], ["薄荷綠", "Mint green", "สีเขียวมินต์"], ["歡迎來到情侶莊園", "Welcome to Couple Farm", "ยินดีต้อนรับสู่ฟาร์มคู่รัก"], ["請選擇你的身分，選好後就會進入遊戲", "Choose who you are, then the game begins", "เลือกว่าคุณคือใคร แล้วเริ่มเกมได้เลย"], ["情侶世界", "Couple World", "โลกของคู่รัก"], ["準備中", "Ready", "พร้อม"], ["已同步", "Synced", "ซิงค์แล้ว"], ["同步中...", "Syncing...", "กำลังซิงค์..."], ["本機體驗", "Offline mode", "โหมดออฟไลน์"], ["圖鑑收藏", "Codex Collection", "สมุดสะสม"], ["圖鑑新發現", "New Codex Entry", "พบใหม่ในสมุดสะสม"], ["圖鑑", "Codex", "สมุดสะสม"], ["音效開", "Sound on", "เปิดเสียง"], ["音效靜音", "Sound off", "ปิดเสียง"], ["點擊地點前往，小人會走過去", "tap a place to go - your avatar walks there", "แตะสถานที่เพื่อไป ตัวละครจะเดินไปให้"], ["莊園世界地圖", "Estate World Map", "แผนที่โลกของเรา"], ["目前位置：", "Location: ", "ตำแหน่งปัจจุบัน: "], ["🧭 北", "🧭 N", "🧭 เหนือ"], ["雙人互動動態紀錄", "Our Activity Log", "บันทึกกิจกรรมของเรา"], ["系統", "System", "ระบบ"], ["剛剛", "just now", "เมื่อครู่"], ["歡迎來到 2.5D 情侶世界！探索 7 大地圖並體驗動態與音效吧！", "Welcome to the 2.5D Couple World! Explore the maps and enjoy the sounds!", "ยินดีต้อนรับสู่โลก 2.5D ของคู่รัก! ออกสำรวจแผนที่และฟังเสียงกันเลย!"], ["播種、澆水、收成皆有動態與音效，並展示農場布置！", "Plant, water and harvest with animations and sounds, and show off your farm decor!", "ปลูก รดน้ำ เก็บเกี่ยว พร้อมแอนิเมชันและเสียง และโชว์ของตกแต่งฟาร์ม!"], ["動物活潑跳動與互動音效，一起照顧牧場與牧場布置！", "Lively animals and interaction sounds - take care of the ranch together!", "สัตว์น่ารักและเสียงโต้ตอบ ช่วยกันดูแลทุ่งเลี้ยงสัตว์!"], ["購買物資、體力道具、送禮，或挑選農場／牧場／建築布置！", "Buy supplies, stamina items, gifts, or pick farm / ranch / building decor!", "ซื้อของ ไอเทมพลังงาน ของขวัญ หรือเลือกของตกแต่งฟาร์ม/ทุ่ง/อาคาร!"], ["城鎮地圖！點選小屋、烘焙坊、風車、樹屋來升級，還能看到買下的建築布置。", "Town map! Tap the cottage, bakery, windmill or treehouse to upgrade, and see the decor you bought.", "แผนที่เมือง! แตะบ้าน เบเกอรี่ กังหันลม บ้านต้นไม้เพื่ออัปเกรด และดูของตกแต่งที่ซื้อ"], ["海浪翻湧與撿貝殼特效，聆聽海風與浪潮音效！", "Rolling waves and shell collecting - listen to the sea breeze!", "คลื่นซัดและเก็บเปลือกหอย ฟังเสียงลมทะเล!"], ["流動山泉水與愛情祈願樹，寫下願望並聆聽山泉風鈴！", "Flowing spring water and the love wishing tree - write a wish and hear the chimes!", "น้ำพุภูเขาและต้นไม้อธิษฐานแห่งรัก เขียนพรและฟังเสียงกระดิ่งลม!"], ["記憶翻牌、接愛心、幸運轉盤、愛的小紙條與約會任務卡，一起增進感情！", "Memory cards, heart catching, lucky wheel, love notes and date cards - grow closer together!", "เกมจับคู่ จับหัวใจ วงล้อนำโชค โน้ตรัก และการ์ดเดท เพิ่มความรักด้วยกัน!"], ["森林微風與清脆鳥叫聲，伐木並挑戰抓蟲小遊戲！", "Forest breeze and birdsong - chop wood and try the bug-catching game!", "ลมป่าและเสียงนกร้อง ตัดไม้และเล่นเกมจับแมลง!"], ["愛心遊樂園", "Love Amusement Park", "สวนสนุกแห่งรัก"], ["城鎮中心", "Town Center", "ใจกลางเมือง"], ["遊樂園", "Park", "สวนสนุก"], ["農場", "Farm", "ฟาร์ม"], ["牧場", "Ranch", "ทุ่งเลี้ยงสัตว์"], ["商店", "Shop", "ร้านค้า"], ["海邊", "Beach", "ชายหาด"], ["山上", "Mountain", "ภูเขา"], ["森林", "Forest", "ป่า"], ["我們的小屋", "Our Cottage", "บ้านของเรา"], ["甜蜜烘焙坊", "Sweet Bakery", "เบเกอรี่แสนหวาน"], ["愛情風車", "Love Windmill", "กังหันลมแห่งรัก"], ["夢想樹屋", "Dream Treehouse", "บ้านต้นไม้แห่งฝัน"], ["烘焙坊", "Bakery", "เบเกอรี่"], ["小屋", "Cottage", "กระท่อม"], ["風車", "Windmill", "กังหันลม"], ["樹屋", "Treehouse", "บ้านต้นไม้"], ["小甜心", "Sweetie", "ที่รักตัวน้อย"], ["一起環遊世界 ✈️", "Travel the world together ✈️", "เที่ยวรอบโลกด้วยกัน ✈️"], ["每天都要幸福 💖", "Be happy every day 💖", "มีความสุขทุกวัน 💖"], ["金幣不足", "Not enough coins", "เหรียญไม่พอ"], ["金幣", "coins", "เหรียญ"], ["愛情等級", "Love Level", "ระดับความรัก"], ["愛心 EXP", "love EXP", "EXP ความรัก"], ["木材 / 🌾 飼料", "Wood / 🌾 Feed", "ไม้ / 🌾 อาหารสัตว์"], ["飽食", "Full", "อิ่ม"], ["親密", "Bond", "ความสนิท"], ["在一起", "Together", "อยู่ด้วยกัน"], ["體力", "Stamina", "พลังงาน"], ["木材", "Wood", "ไม้"], ["飼料", "Feed", "อาหารสัตว์"], ["撿貝殼約會", "Collect shells (date)", "เก็บเปลือกหอย (เดท)"], ["採山泉", "Collect spring water", "เก็บน้ำพุ"], ["伐木收集", "Chop wood", "ตัดไม้"], ["開始抓蟲小遊戲", "Start bug-catching game", "เริ่มเกมจับแมลง"], ["記憶翻牌", "Memory Cards", "เกมจับคู่ไพ่"], ["接愛心", "Catch Hearts", "จับหัวใจ"], ["幸運轉盤", "Lucky Wheel", "วงล้อนำโชค"], ["抽約會任務卡", "Draw a date card", "จับการ์ดเดท"], ["愛心記憶翻牌", "Heart Memory Cards", "เกมจับคู่ไพ่หัวใจ"], ["翻開成對的圖案，步數越少獎勵越多！", "Match the pairs - fewer moves, bigger reward!", "เปิดไพ่จับคู่ ยิ่งใช้ก้าวน้อย รางวัลยิ่งมาก!"], ["15 秒內點 💗 得分，小心別點到 💔！", "Tap 💗 within 15 seconds - avoid 💔!", "แตะ 💗 ภายใน 15 วินาที ระวังอย่าแตะ 💔!"], ["金幣、體力、木材，還有機會轉到稀有物！", "Coins, stamina, wood - and a chance at rare items!", "เหรียญ พลังงาน ไม้ และมีโอกาสได้ของหายาก!"], ["約會任務卡", "Date Card", "การ์ดเดท"], ["抽一張現實中也能一起完成的小任務，完成後兩人都開心！", "Draw a small task you can do together in real life!", "จับภารกิจเล็ก ๆ ที่ทำด้วยกันได้ในชีวิตจริง!"], ["我們完成了！", "We did it!", "เราทำสำเร็จแล้ว!"], ["愛的小紙條", "Love Notes", "โน้ตรัก"], ["寄出", "Send", "ส่ง"], ["寫一句悄悄話給另一半…", "Write a sweet whisper to your partner…", "เขียนคำกระซิบหวาน ๆ ถึงอีกฝ่าย…"], ["還沒有小紙條，寫下第一張吧！", "No notes yet - write the first one!", "ยังไม่มีโน้ต เขียนใบแรกกันเลย!"], ["先寫點什麼吧！", "Write something first!", "เขียนอะไรสักหน่อยก่อนนะ!"], ["寄給", "To", "ส่งถึง"], ["已讀", "Read", "อ่านแล้ว"], ["未讀", "Unread", "ยังไม่อ่าน"], ["收到", "Received from", "ได้รับจาก"], ["的一封新信！", "- a new letter!", "- จดหมายฉบับใหม่!"], ["拆開閱讀", "Open and read", "เปิดอ่าน"], ["步數：", "Moves: ", "จำนวนก้าว: "], ["得分：", "Score: ", "คะแนน: "], ["剩餘：", "Left: ", "เหลือ: "], ["轉啊轉…", "Spinning…", "กำลังหมุน…"], ["獲得：", "Got: ", "ได้รับ: "], ["🎁 神秘稀有物", "🎁 Mystery rare item", "🎁 ของหายากปริศนา"], ["體力 +25", "Stamina +25", "พลังงาน +25"], ["木材 +3", "Wood +3", "ไม้ +3"], ["愛心 EXP +60", "Love EXP +60", "EXP ความรัก +60"], ["新收藏！", "New!", "ใหม่!"], ["新發現！", "New!", "พบใหม่!"], ["還在冷卻中，再等", "Still on cooldown, wait", "ยังอยู่ในช่วงคูลดาวน์ รออีก"], ["秒", "s", "วินาที"], ["體力不足！需要", "Not enough stamina! Need", "พลังงานไม่พอ! ต้องใช้"], ["目前", "now", "ตอนนี้"], ["到商店買體力道具或稍作休息吧", "Buy stamina items at the shop or rest a bit", "ไปซื้อไอเทมพลังงานที่ร้านค้า หรือพักสักครู่"], ["🍙 愛心飯糰", "🍙 Love Rice Ball", "🍙 ข้าวปั้นหัวใจ"], ["立即回復 20 點體力。", "Restores 20 stamina instantly.", "ฟื้นพลังงาน 20 ทันที"], ["🧃 活力果汁", "🧃 Energy Juice", "🧃 น้ำผลไม้เพิ่มพลัง"], ["立即回復 50 點體力。", "Restores 50 stamina instantly.", "ฟื้นพลังงาน 50 ทันที"], ["🍱 甜蜜便當", "🍱 Sweet Bento", "🍱 เบนโตะแสนหวาน"], ["體力一次回滿！", "Fully restores stamina!", "เติมพลังงานเต็มทันที!"], ["🏅 活力徽章", "🏅 Vitality Badge", "🏅 เหรียญพลังชีวิต"], ["體力上限永久 +10（最多 +50）。", "Max stamina +10 permanently (up to +50).", "พลังงานสูงสุด +10 ถาวร (สูงสุด +50)"], ["體力道具（海邊／山上／森林探索會消耗體力）", "Stamina items (exploring beach / mountain / forest costs stamina)", "ไอเทมพลังงาน (การสำรวจหาด/ภูเขา/ป่าใช้พลังงาน)"], ["價格：", "Price: ", "ราคา: "], ["自己用", "Use myself", "ใช้เอง"], ["送給另一半", "Give to partner", "ให้อีกฝ่าย"], ["體力上限已達 +50！", "Max stamina bonus reached (+50)!", "พลังงานสูงสุดถึง +50 แล้ว!"], ["體力已經是滿的囉！", "Stamina is already full!", "พลังงานเต็มแล้ว!"], ["送給另一半", "Give to partner", "ให้อีกฝ่าย"], ["另一半", "partner", "อีกฝ่าย"], ["需要愛情等級", "needs Love Level", "ต้องการระดับความรัก"], ["才能前往", "to go there", "จึงจะไปได้"], ["才能升級", "to upgrade", "จึงจะอัปเกรดได้"], ["解鎖", "Unlock", "ปลดล็อก"], ["繼續加油！", "Keep going!", "สู้ต่อไป!"], ["愛情等級解鎖一覽", "Love Level Unlock List", "รายการปลดล็อกตามระดับความรัก"], ["下一個解鎖：", "Next unlock: ", "ปลดล็อกถัดไป: "], ["已全部解鎖！", "Everything unlocked!", "ปลดล็อกครบทุกอย่างแล้ว!"], ["（作物）", "(crop)", "(พืช)"], ["（動物）", "(animal)", "(สัตว์)"], ["（布置）", "(decor)", "(ของตกแต่ง)"], ["（地圖）", "(map)", "(แผนที่)"], ["（地標）", "(landmark)", "(แลนด์มาร์ก)"], ["農田（共", "Farm plots (total", "แปลงนา (รวม"], ["塊）", ")", "แปลง)"], ["建築可升至", "Buildings can reach", "อาคารอัปเกรดได้ถึง"], ["點地圖上的建築可切換查看。", "Tap a building on the map to switch.", "แตะอาคารบนแผนที่เพื่อสลับดู"], ["突發事件", "Rare Event", "เหตุการณ์พิเศษ"], ["探索", "Exploring", "การสำรวจ"], ["作物", "Crops", "พืชผล"], ["動物", "Animals", "สัตว์"], ["稀有", "Rare", "หายาก"], ["布置", "Decor", "ของตกแต่ง"], ["建築", "Building", "อาคาร"], ["總收集進度", "Overall progress", "ความคืบหน้ารวม"], ["稀有物已收進圖鑑", "The rare item was added to your Codex", "เก็บของหายากเข้าสมุดสะสมแล้ว"], ["你們各獲得", "You each get", "คุณทั้งคู่ได้รับ"], ["太棒了，收下！", "Awesome, take it!", "เยี่ยมเลย รับไว้!"], ["🆕 新收藏！", "🆕 New!", "🆕 ใหม่!"], ["今日心動時刻", "Daily Heartbeat Moment", "ช่วงเวลาหัวใจเต้นประจำวัน"], ["尚未作答", "Not answered", "ยังไม่ตอบ"], ["等待另一半", "Waiting for partner", "รออีกฝ่าย"], ["已揭曉 ✨", "Revealed ✨", "เฉลยแล้ว ✨"], ["選一個最符合你的答案，等另一半也回答後就能同時揭曉！", "Pick the answer that fits you best - it is revealed once your partner answers too!", "เลือกคำตอบที่ตรงกับคุณที่สุด เมื่ออีกฝ่ายตอบแล้วจะเฉลยพร้อมกัน!"], ["你選了：", "You chose: ", "คุณเลือก: "], ["等待", "Waiting for", "รอ"], ["回答中…對方作答後，這裡就會顯示彼此的答案。", "to answer… once they do, both answers will show here.", "ตอบ… เมื่อเขาตอบแล้ว คำตอบของทั้งคู่จะแสดงที่นี่"], ["🎉 默契滿分！你們的答案一樣！", "🎉 Perfect match! Same answer!", "🎉 ใจตรงกันเป๊ะ! ตอบเหมือนกัน!"], ["💡 答案不同，聊聊為什麼吧！", "💡 Different answers - talk about why!", "💡 คำตอบต่างกัน ลองคุยกันว่าทำไม!"], ["📜 過去的答案", "📜 Past answers", "📜 คำตอบที่ผ่านมา"], ["連續", "streak", "ต่อเนื่อง"], ["今日心動時刻默契滿分！兩人各得 80 金幣", "Perfect match on the daily moment! You each get 80 coins", "ใจตรงกันในช่วงเวลาหัวใจเต้น! ได้คนละ 80 เหรียญ"], ["已交往第", "Together", "คบกันมา"], ["從 2026/08/20 開始", "Since 2026/08/20", "ตั้งแต่ 2026/08/20"], ["播種", "Plant", "ปลูก"], ["可收成！", "Ready to harvest!", "เก็บเกี่ยวได้!"], ["點擊動物可撫摸", "tap an animal to pet it", "แตะสัตว์เพื่อลูบ"], ["餵食", "Feed", "ให้อาหาร"], ["撫摸", "Pet", "ลูบ"], ["領養", "Adopt", "รับเลี้ยง"], ["動物名字", "Animal name", "ชื่อสัตว์"], ["建造木材（50幣）", "Building Wood (50 coins)", "ไม้ก่อสร้าง (50 เหรียญ)"], ["升等建築與伐木必備。", "Needed for upgrading buildings.", "จำเป็นสำหรับอัปเกรดอาคาร"], ["買 +1", "Buy +1", "ซื้อ +1"], ["買 +5", "Buy +5", "ซื้อ +5"], ["買 +2", "Buy +2", "ซื้อ +2"], ["買 +10", "Buy +10", "ซื้อ +10"], ["牧場飼料（25幣）", "Ranch Feed (25 coins)", "อาหารสัตว์ (25 เหรียญ)"], ["餵食動物產出物資。", "Feed animals to get supplies.", "ให้อาหารสัตว์เพื่อรับของ"], ["甜蜜金幣禮包（100幣）", "Sweet Coin Gift Pack (100 coins)", "ถุงเหรียญแสนหวาน (100 เหรียญ)"], ["送 100 金幣給另一半。", "Send 100 coins to your partner.", "ส่ง 100 เหรียญให้อีกฝ่าย"], ["莊園布置（農場／牧場／建築）", "Estate Decor (Farm / Ranch / Building)", "ของตกแต่งฟาร์ม (ฟาร์ม / ทุ่ง / อาคาร)"], ["莊園布置", "Estate Decor", "ของตกแต่ง"], ["購買布置", "Buy decor", "ซื้อของตกแต่ง"], ["已擁有並布置", "Owned and placed", "มีแล้วและตั้งไว้แล้ว"], ["需愛情", "needs Love", "ต้องการความรัก"], ["尚未布置此區域，可到「商店」購買裝飾！", "Nothing placed here yet - buy decor at the Shop!", "ยังไม่มีของตกแต่งที่นี่ ไปซื้อที่ร้านค้าได้!"], ["全部", "All", "ทั้งหมด"], ["未擁有", "Not owned", "ยังไม่มี"], ["已擁有", "Owned", "มีแล้ว"], ["收藏", "Collected", "สะสม"], ["小屋布置", "Cottage Decor", "ตกแต่งบ้าน"], ["個擺放格", "slots", "ช่องวาง"], ["家具與裝飾系統即將開放！升級小屋可解鎖更多擺放格，未來能一起把小屋布置成專屬的家 💕", "Furniture and decor are coming soon! Upgrade the cottage to unlock more slots and decorate your home together 💕", "ระบบเฟอร์นิเจอร์และของตกแต่งกำลังจะมา! อัปเกรดบ้านเพื่อปลดล็อกช่องวางเพิ่ม แล้วตกแต่งบ้านด้วยกัน 💕"], ["投入建材", "Add materials", "ใส่วัสดุก่อสร้าง"], ["已達最高 Lv.10！", "Max Lv.10 reached!", "ถึง Lv.10 สูงสุดแล้ว!"], ["升到", "To reach", "การอัปเกรดเป็น"], ["需要愛情等級", "needs Love Level", "ต้องการระดับความรัก"], ["🌊 聽海浪聲", "🌊 Listen to the waves", "🌊 ฟังเสียงคลื่น"], ["高山清澈山泉", "Clear mountain spring", "น้ำพุภูเขาใสสะอาด"], ["🔊 山泉聲", "🔊 Spring sound", "🔊 เสียงน้ำพุ"], ["雙人愛情祈願樹", "Couple Love Wishing Tree", "ต้นไม้อธิษฐานแห่งรัก"], ["許願", "Make a wish", "ขอพร"], ["🐦 聽鳥叫", "🐦 Listen to birds", "🐦 ฟังเสียงนก"], ["幣·Lv.", "coins · Lv.", "เหรียญ · Lv."], ["擺放格", "slots", "ช่องวาง"], ["獲得", "Got", "ได้รับ"], ["體力", "Stamina", "พลังงาน"], ["收成", "Harvest", "เก็บเกี่ยว"], ["寫下心願...", "Write a wish...", "เขียนพร..."], ["這座建築已達最高 Lv.10 夢幻型態！", "This building has reached its max Lv.10 dream form!", "อาคารนี้ถึง Lv.10 รูปแบบสุดยอดแล้ว!"], ["沒有可投入的木材或金幣！", "No wood or coins to invest!", "ไม่มีไม้หรือเหรียญให้ใส่!"], ["飼料不足，請先到商店購買！", "Not enough feed - buy some at the shop first!", "อาหารสัตว์ไม่พอ ไปซื้อที่ร้านค้าก่อนนะ!"], ["已經擁有這個布置囉！", "You already own this decor!", "คุณมีของตกแต่งชิ้นนี้แล้ว!"]]);
+TR_RULES.push(...[["^(.+?) 在 (.+?) 種下了 (.+)$", "$1 planted $3 on $2", "$1 ปลูก $3 ที่ $2"], ["^(.+?) 幫另一半的 (.+?) 澆水！$", "$1 watered partner's $2!", "$1 รดน้ำ $2 ของอีกฝ่าย!"], ["^(.+?) 為 (.+?) 澆水$", "$1 watered $2", "$1 รดน้ำ $2"], ["^(.+?) 收成 (.+?)（\\+(\\d+) 金幣）$", "$1 harvested $2 (+$3 coins)", "$1 เก็บเกี่ยว $2 (+$3 เหรียญ)"], ["^(.+?) 領養了 (.+)$", "$1 adopted $2", "$1 รับเลี้ยง $2"], ["^(.+?) 餵食了「(.+?)」$", "$1 fed \"$2\"", "$1 ให้อาหาร \"$2\""], ["^(.+?) 撫摸了「(.+?)」💖$", "$1 petted \"$2\" 💖", "$1 ลูบ \"$2\" 💖"], ["^(.+?) 收集「(.+?)」的(.+?)（\\+(\\d+) 金幣）$", "$1 collected $3 from \"$2\" (+$4 coins)", "$1 เก็บ $3 จาก \"$2\" (+$4 เหรียญ)"], ["^(.+?) 購買了 (\\d+) (木材|飼料)$", "$1 bought $2 $3", "$1 ซื้อ $3 จำนวน $2"], ["^(.+?) 送給 (.+?) (\\d+) 金幣$", "$1 gave $2 $3 coins", "$1 ให้ $2 จำนวน $3 เหรียญ"], ["^(.+?) 送給 (.+?) (.+)$", "$1 gave $2 $3", "$1 ให้ $2 $3"], ["^(.+?) 使用了 (.+)$", "$1 used $2", "$1 ใช้ $2"], ["^(.+?) 購入布置「(.+?)」$", "$1 bought decor \"$2\"", "$1 ซื้อของตกแต่ง \"$2\""], ["^🏰「(.+?)」升至 Lv\\.(\\d+)，外觀全面升級！$", "🏰 \"$1\" upgraded to Lv.$2 with a brand-new look!", "🏰 \"$1\" อัปเกรดเป็น Lv.$2 หน้าตาใหม่หมด!"], ["^(.+?) 投入建材建造「(.+?)」$", "$1 added materials to build \"$2\"", "$1 ใส่วัสดุเพื่อสร้าง \"$2\""], ["^(.+?) 在海邊聽海浪撿到貝殼（\\+65 金幣，-(\\d+) 體力）$", "$1 listened to the waves and found shells (+65 coins, -$2 stamina)", "$1 ฟังเสียงคลื่นและเก็บเปลือกหอย (+65 เหรียญ, -$2 พลังงาน)"], ["^(.+?) 在山上採集山泉水（\\+80 金幣，-(\\d+) 體力）$", "$1 collected spring water on the mountain (+80 coins, -$2 stamina)", "$1 เก็บน้ำพุบนภูเขา (+80 เหรียญ, -$2 พลังงาน)"], ["^(.+?) 在森林聽鳥叫砍伐了 2 單位木材（-(\\d+) 體力）$", "$1 chopped 2 wood in the forest (-$2 stamina)", "$1 ตัดไม้ 2 หน่วยในป่า (-$2 พลังงาน)"], ["^(.+?) 在祈願樹掛上願望：「(.+?)」$", "$1 hung a wish on the tree: \"$2\"", "$1 แขวนพรบนต้นไม้: \"$2\""], ["^(.+?) 森林抓蟲獲得 (\\d+) 分（\\+(\\d+) 金幣）$", "$1 caught bugs in the forest: $2 pts (+$3 coins)", "$1 จับแมลงในป่าได้ $2 คะแนน (+$3 เหรียญ)"], ["^抓蟲結束！得分 (\\d+) 分！$", "Bug catching over! Score: $1!", "จบเกมจับแมลง! ได้ $1 คะแนน!"], ["^🎉 愛情升級至 Lv\\.(\\d+)！(.*)$", "🎉 Love level up to Lv.$1! $2", "🎉 ระดับความรักขึ้นเป็น Lv.$1! $2"], ["^🎉 愛情等級 Lv\\.(\\d+)！ 解鎖 (.+) 等$", "🎉 Love Lv.$1! Unlocked $2 and more", "🎉 ความรัก Lv.$1! ปลดล็อก $2 และอื่น ๆ"], ["^🎉 愛情等級 Lv\\.(\\d+)！ 解鎖 (.+)$", "🎉 Love Lv.$1! Unlocked $2", "🎉 ความรัก Lv.$1! ปลดล็อก $2"], ["^🎉 愛情等級 Lv\\.(\\d+)！$", "🎉 Love Lv.$1!", "🎉 ความรัก Lv.$1!"], ["^解鎖：(.+)$", "Unlocked: $1", "ปลดล็อก: $1"], ["^✨ 突發事件「(.+?)」發生了！獲得 (.+)$", "✨ Rare event \"$1\" happened! Got $2", "✨ เหตุการณ์พิเศษ \"$1\" เกิดขึ้น! ได้รับ $2"], ["^✨ 突發事件：(.+)$", "✨ Rare Event: $1", "✨ เหตุการณ์พิเศษ: $1"], ["^💰 你們各獲得 (\\d+) 金幣・💖 \\+(\\d+) EXP$", "💰 You each get $1 coins · 💖 +$2 EXP", "💰 คุณทั้งคู่ได้ $1 เหรียญ · 💖 +$2 EXP"], ["^💓 (.+?) 回答了今日心動時刻$", "💓 $1 answered the daily heartbeat moment", "💓 $1 ตอบช่วงเวลาหัวใจเต้นประจำวัน"], ["^(.+?) 寫了一張小紙條給 (.+)$", "$1 wrote a love note to $2", "$1 เขียนโน้ตรักถึง $2"], ["^(.+?) 讀了 (.+?) 的小紙條$", "$1 read $2's love note", "$1 อ่านโน้ตรักของ $2"], ["^(.+?) 完成了約會任務卡（\\+100 金幣）$", "$1 completed a date card (+100 coins)", "$1 ทำการ์ดเดทสำเร็จ (+100 เหรียญ)"], ["^(.+?) 完成記憶翻牌（(\\d+) 步，\\+(\\d+) 金幣）$", "$1 finished Memory Cards ($2 moves, +$3 coins)", "$1 เล่นจับคู่ไพ่สำเร็จ ($2 ก้าว, +$3 เหรียญ)"], ["^(.+?) 接愛心獲得 (\\d+) 分（\\+(\\d+) 金幣）$", "$1 caught hearts: $2 pts (+$3 coins)", "$1 จับหัวใจได้ $2 คะแนน (+$3 เหรียญ)"], ["^(.+?) 轉到了 (.+)$", "$1 spun: $2", "$1 หมุนได้: $2"], ["^🎉 完成！(\\d+) 步，獲得 (\\d+) 金幣$", "🎉 Done! $1 moves, got $2 coins", "🎉 สำเร็จ! $1 ก้าว ได้ $2 เหรียญ"], ["^💗 得分 (\\d+)，獲得 (\\d+) 金幣$", "💗 Score $1, got $2 coins", "💗 ได้ $1 คะแนน ได้ $2 เหรียญ"], ["^🔒 (.+?) 需要愛情等級 Lv\\.(\\d+) 才能前往$", "🔒 $1 needs Love Level Lv.$2 to visit", "🔒 $1 ต้องการระดับความรัก Lv.$2 จึงจะไปได้"], ["^⏳ 還在冷卻中，再等 (\\d+) 秒$", "⏳ Still on cooldown - wait $1 s", "⏳ ยังคูลดาวน์อยู่ รออีก $1 วินาที"], ["^⚡ 體力不足！需要 (\\d+)，目前 (\\d+)。到商店買體力道具或稍作休息吧$", "⚡ Not enough stamina! Need $1, you have $2. Buy items at the shop or rest a bit.", "⚡ พลังงานไม่พอ! ต้องการ $1 ตอนนี้มี $2 ไปซื้อไอเทมที่ร้านหรือพักสักครู่"], ["^🔒 需要愛情等級 Lv\\.(\\d+)$", "🔒 Needs Love Level Lv.$1", "🔒 ต้องการระดับความรัก Lv.$1"], ["^🔒 需要愛情等級 Lv\\.(\\d+) 才能升級$", "🔒 Needs Love Level Lv.$1 to upgrade", "🔒 ต้องการระดับความรัก Lv.$1 จึงจะอัปเกรดได้"], ["^🎁 獲得 (.+?)（新發現！）$", "🎁 Got $1 (new!)", "🎁 ได้รับ $1 (พบใหม่!)"], ["^🎁 獲得 (.+)$", "🎁 Got $1", "🎁 ได้รับ $1"], ["^📖 圖鑑新發現：(.+)$", "📖 New Codex entry: $1", "📖 พบใหม่ในสมุดสะสม: $1"], ["^第 (\\d+) 天$", "Day $1", "วันที่ $1"], ["^💕 已交往第 (\\d+) 天$", "💕 Together for $1 days", "💕 คบกันมาแล้ว $1 วัน"], ["^距離第 (\\d+) 天還有 (\\d+) 天$", "$2 days until day $1", "อีก $2 วันถึงวันที่ $1"], ["^🎉 今天是第 (\\d+) 天紀念日！$", "🎉 Today is the day-$1 anniversary!", "🎉 วันนี้ครบรอบวันที่ $1!"], ["^從 2026/08/20 開始・(.+)$", "Since 2026/08/20 · $1", "ตั้งแต่ 2026/08/20 · $1"], ["^💓 今日心動時刻・(.+)$", "💓 Daily Heartbeat · $1", "💓 ช่วงเวลาหัวใจเต้น · $1"], ["^第 (\\d+) 天・(\\S+)　🔥 連續 (\\d+) 天$", "Day $1 · $2   🔥 $3-day streak", "วันที่ $1 · $2   🔥 ต่อเนื่อง $3 วัน"], ["^⏳ 等待 (.+?) 回答中…對方作答後，這裡就會顯示彼此的答案。$", "⏳ Waiting for $1 to answer… both answers will show here once they do.", "⏳ รอ $1 ตอบ… เมื่อตอบแล้วคำตอบของทั้งคู่จะแสดงที่นี่"], ["^📤 寄給 (.+?)：$", "📤 To $1: ", "📤 ส่งถึง $1: "], ["^拆開閱讀（\\+15 EXP）$", "Open and read (+15 EXP)", "เปิดอ่าน (+15 EXP)"], ["^寄出（\\+10 EXP）$", "Send (+10 EXP)", "ส่ง (+10 EXP)"], ["^我們完成了！（\\+40 EXP / \\+100 金幣）$", "We did it! (+40 EXP / +100 coins)", "เราทำสำเร็จแล้ว! (+40 EXP / +100 เหรียญ)"], ["^(.+?)（-(\\d+)⚡・CD (\\d+)s）$", "$1 (-$2⚡ · CD $3s)", "$1 (-$2⚡ · CD $3 วิ)"], ["^⏳ (.+?)（CD (\\d+)s）$", "⏳ $1 (CD $2s)", "⏳ $1 (CD $2 วิ)"], ["^🛋️ 小屋布置（Lv\\.(\\d+)：(\\d+) 個擺放格）$", "🛋️ Cottage Decor (Lv.$1: $2 slots)", "🛋️ ตกแต่งบ้าน (Lv.$1: $2 ช่อง)"], ["^價格：(\\d+) 金幣・需愛情 Lv\\.(\\d+)$", "Price: $1 coins · needs Love Lv.$2", "ราคา: $1 เหรียญ · ต้องการความรัก Lv.$2"], ["^🔒 愛情 Lv\\.(\\d+) 解鎖$", "🔒 Unlocks at Love Lv.$1", "🔒 ปลดล็อกที่ความรัก Lv.$1"], ["^Lv\\.(\\d+) 解鎖$", "Unlocks at Lv.$1", "ปลดล็อกที่ Lv.$1"], ["^🔒 升到 Lv\\.(\\d+) 需要愛情等級 Lv\\.(\\d+)（目前 Lv\\.(\\d+)）$", "🔒 Reaching Lv.$1 needs Love Level Lv.$2 (now Lv.$3)", "🔒 การอัปเกรดเป็น Lv.$1 ต้องการระดับความรัก Lv.$2 (ตอนนี้ Lv.$3)"], ["^投入建材（\\+2木/\\+150幣）$", "Add materials (+2 wood / +150 coins)", "ใส่วัสดุ (+2 ไม้ / +150 เหรียญ)"], ["^🪵 建造木材（50幣）$", "🪵 Building Wood (50 coins)", "🪵 ไม้ก่อสร้าง (50 เหรียญ)"], ["^🌾 牧場飼料（25幣）$", "🌾 Ranch Feed (25 coins)", "🌾 อาหารสัตว์ (25 เหรียญ)"], ["^💌 甜蜜金幣禮包（100幣）$", "💌 Sweet Coin Gift Pack (100 coins)", "💌 ถุงเหรียญแสนหวาน (100 เหรียญ)"]]);
+    function buildTr() {
+      ['en', 'th'].forEach((l, i) => {
+        const T = TR[l]; T.map.clear(); T.cache.clear();
+        TR_ROWS.forEach(r => { if (r[0] && r[i + 1] !== undefined) T.map.set(r[0], r[i + 1]); });
+        const keys = Array.from(T.map.keys()).sort((a, b) => b.length - a.length);
+        T.re = keys.length ? new RegExp(keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g') : null;
+        T.rules = TR_RULES.map(r => [new RegExp(r[0]), r[i + 1]]);
+      });
+    }
+    buildTr();
+    function trCore(core) {
+      const T = TR[lang];
+      let suffix = '';
+      const em = core.match(/（\+(\d+) 愛心 EXP）$/);
+      if (em) { core = core.slice(0, -em[0].length).trim(); suffix = lang === 'en' ? ` (+${em[1]} love EXP)` : ` (+${em[1]} EXP ความรัก)`; }
+      let out = null;
+      for (const r of T.rules) {
+        const mm = core.match(r[0]);
+        if (mm) { out = r[1].replace(/\$(\d)/g, (_, i) => trStr(mm[i] || '')); break; }
+      }
+      if (out === null) out = T.re ? core.replace(T.re, x => ' ' + T.map.get(x) + ' ') : core;
+      out = out.replace(/[（）：，、！？・。～]/g, c => PUNC[c]).replace(/\s+/g, ' ').replace(/\s+([,.!?:)])/g, '$1').replace(/\(\s+/g, '(').trim();
+      return out + suffix;
+    }
+    function trStr(str) {
+      if (lang === 'zh' || typeof str !== 'string') return str;
+      const T = TR[lang];
+      if (T.cache.has(str)) return T.cache.get(str);
+      const m = str.match(/^(\s*)([\s\S]*?)(\s*)$/);
+      const res = /[\u3400-\u9fff\uff00-\uffef]/.test(m[2]) ? m[1] + trCore(m[2]) + m[3] : str;
+      T.cache.set(str, res);
+      return res;
+    }
+    function translateDom(root) {
+      if (!root) return;
+      const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), nodes = [];
+      while (w.nextNode()) nodes.push(w.currentNode);
+      nodes.forEach(n => {
+        const p = n.parentElement; if (!p) return;
+        const tag = p.tagName; if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA') return;
+        if (p.closest('[data-notr]')) return;
+        if (n.__zh === undefined) { if (!/[\u3400-\u9fff]/.test(n.nodeValue)) return; n.__zh = n.nodeValue; }
+        const v = lang === 'zh' ? n.__zh : trStr(n.__zh);
+        if (n.nodeValue !== v) n.nodeValue = v;
+      });
+      root.querySelectorAll('[placeholder],[title]').forEach(el => {
+        ['placeholder', 'title'].forEach(a => {
+          if (!el.hasAttribute(a)) return;
+          const k = 'data-zh-' + a;
+          if (!el.hasAttribute(k)) { const val = el.getAttribute(a); if (!/[\u3400-\u9fff]/.test(val)) return; el.setAttribute(k, val); }
+          el.setAttribute(a, lang === 'zh' ? el.getAttribute(k) : trStr(el.getAttribute(k)));
+        });
+      });
+    }
+    function setLang(l) {
+      lang = l;
+      localStorage.setItem('couple_25d_lang', l);
+      document.documentElement.lang = l === 'zh' ? 'zh-Hant' : l;
+      document.title = l === 'zh' ? '雙人情侶 2.5D 莊園大冒險' : (l === 'en' ? 'Couple 2.5D Farm Adventure' : 'ฟาร์มผจญภัย 2.5D ของคู่รัก');
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+      render(); renderHud(); updateCdUI(); refreshModal();
+      translateDom(document.body);
+    }
+    (function installI18n() {
+      const _alert = window.alert ? window.alert.bind(window) : null;
+      if (_alert) window.alert = m => _alert(trStr(String(m)));
+    })();
+
 
     let actor = localStorage.getItem('couple_25d_actor') || 'player_1';
     let currentLoc = localStorage.getItem('couple_25d_loc') || 'farm';
     let isSyncing = false;
+    let busyGame = false, started = false, inEvent = false, noteDraft = '', curDate = null, codexTab = 'crops', modalFn = null;
     let selectedSeed = 'carrot', selectedAni = 'chicken', petDraft = '', selBld = 'cottage', svgBare = false;
 
     let state = {
@@ -920,6 +1402,7 @@
         { id: 'treehouse', name: '夢想樹屋',   level: 1, status: 'building', woodDonated: 0, woodNeed: 10, coinsDonated: 0,   coinsNeed: 800 }
       ],
       cottageDecor: [],
+      notes: [], heart: {}, codex: { finds: {}, crops: {}, animals: {} },
       decorations: ['dec_scarecrow', 'dec_swing_a', 'dec_bunting_b'],
       wishes: ['一起環遊世界 ✈️', '每天都要幸福 💖'],
       logs: [
@@ -930,8 +1413,8 @@
     function switchActor(id) {
       actor = id;
       localStorage.setItem('couple_25d_actor', id);
-      document.getElementById('btnP1').classList.toggle('active', id === 'player_1');
-      document.getElementById('btnP2').classList.toggle('active', id === 'player_2');
+      const u = state.users.find(x => x.accountId === id);
+      document.getElementById('whoLabel').textContent = (id === 'player_2' ? '👩 ' : '🧑 ') + (u ? u.nickname : id);
       render();
     }
 
@@ -955,7 +1438,11 @@
       beach:    { stamina: 10, cd: 20, label: '撿貝殼約會' },
       mountain: { stamina: 15, cd: 30, label: '採山泉' },
       forest:   { stamina: 12, cd: 25, label: '伐木收集' },
-      bug:      { stamina: 15, cd: 45, label: '開始抓蟲小遊戲（15s）' }
+      bug:      { stamina: 15, cd: 45, label: '開始抓蟲小遊戲（15s）' },
+      memory:   { stamina: 8,  cd: 30, label: '記憶翻牌' },
+      hearts:   { stamina: 10, cd: 30, label: '接愛心（15s）' },
+      spin:     { stamina: 5,  cd: 60, label: '幸運轉盤' },
+      date:     { stamina: 0,  cd: 60, label: '抽約會任務卡' }
     };
     const STAMINA_ITEMS = {
       snack: { name: '🍙 愛心飯糰',   price: 40,  gain: 20,  desc: '立即回復 20 點體力。' },
@@ -987,7 +1474,7 @@
     function toast(msg) {
       let t = document.getElementById('toast');
       if (!t) { t = document.createElement('div'); t.id = 'toast'; document.body.appendChild(t); }
-      t.textContent = msg;
+      t.textContent = trStr(msg);
       t.className = 'show';
       clearTimeout(t._h);
       t._h = setTimeout(() => { t.className = ''; }, 2200);
@@ -1015,11 +1502,12 @@
       document.querySelectorAll('[data-spot]').forEach(el => {
         const s = el.dataset.spot, cfg = SPOTS[s], left = cdLeft(s);
         if (el.classList.contains('shell-item')) { el.classList.toggle('on-cd', left > 0); return; }
-        el.disabled = left > 0 || (s === 'bug' && !!gTimer);
-        el.textContent = left > 0 ? `⏳ ${cfg.label.replace('（15s）', '')}（CD ${left}s）` : `${cfg.label}（-${cfg.stamina}⚡・CD ${cfg.cd}s）`;
+        el.disabled = left > 0 || ((s === 'bug' || s === 'memory' || s === 'hearts' || s === 'spin') && (!!gTimer || busyGame));
+        el.textContent = trStr(left > 0 ? `⏳ ${cfg.label.replace(/（\d+s）/, '')}（CD ${left}s）` : `${cfg.label}（-${cfg.stamina}⚡・CD ${cfg.cd}s）`);
       });
     }
-    function renderHud() {
+    function renderHud() { renderHudCore(); translateDom(document.getElementById('hud')); }
+    function renderHudCore() {
       const u = curUser();
       const partner = state.users.find(x => x.accountId !== actor) || state.users[1];
       state.users.forEach(regenStamina);
@@ -1096,6 +1584,7 @@
         toast(`🎉 愛情等級 Lv.${lv}！` + (un.length ? ` 解鎖 ${un[0]}${un.length > 1 ? ' 等' : ''}` : ''));
       }
       pushLog(`${msg}（+${exp} 愛心 EXP）`);
+      if (!inEvent && started && Math.random() < 0.02) setTimeout(triggerEvent, 800);
     }
 
     function spawnTileFx(plotId, text) {
@@ -1118,6 +1607,9 @@
         });
       }
       if (Array.isArray(data.cottageDecor)) state.cottageDecor = data.cottageDecor;
+      if (Array.isArray(data.notes)) state.notes = unionNotes(state.notes, data.notes);
+      if (data.heart && typeof data.heart === 'object') state.heart = mergeHeart(state.heart, data.heart);
+      if (data.codex && typeof data.codex === 'object') state.codex = mergeCodex(state.codex, data.codex);
       if (data.couple && typeof data.couple === 'object') state.couple = { ...state.couple, ...data.couple };
       if (Array.isArray(data.plots) && data.plots.length) state.plots = data.plots;
       ensurePlots();
@@ -1159,38 +1651,49 @@
     }
 
     /* 第二步：向 GAS 下載最新狀態 */
-    async function downloadRemoteState() {
+    async function downloadRemoteState(rev) {
       const url = new URL(gasUrl);
       url.searchParams.set('action', 'getState');
       url.searchParams.set('actor', actor);
       url.searchParams.set('_t', Date.now());
       const res = await fetch(url.toString(), { cache: 'no-store' });
       const data = await res.json();
+      if (rev !== undefined && localRev !== rev) return null; // 下載期間本機又有操作，丟棄這份舊資料
       if (mergeServerState(data)) {
         const t = new Date().toTimeString().slice(0, 8);
-        document.getElementById('syncStatus').textContent = `（已傳載同步 ${t}）`;
+        document.getElementById('syncStatus').textContent = `☁️ 已同步 ${t}`;
       } else {
-        document.getElementById('syncStatus').textContent = '（本機體驗）';
+        document.getElementById('syncStatus').textContent = '📴 本機體驗';
       }
       return data;
     }
 
-    /* 完整流程：先上傳本機資料 -> 再下載最新資料 */
-    async function syncWithUploadFirst(shouldUpload = true) {
-      if (isSyncing) return null;
-      isSyncing = true;
-      document.getElementById('syncStatus').textContent = shouldUpload ? '（上傳本機中...）' : '（下載同步中...）';
+    /* 同步：合併短時間內的多次操作、同一時間只跑一次，且「本機有新操作時不套用舊的下載資料」，避免進度回朔 */
+    let localRev = 0, uploadedRev = 0, syncRunning = false, syncAgain = false, syncTimer = null, syncWaiters = [];
+    function syncWithUploadFirst(shouldUpload = true) {
+      if (shouldUpload) localRev++;
+      return new Promise(resolve => {
+        syncWaiters.push(resolve);
+        if (!syncTimer) syncTimer = setTimeout(() => { syncTimer = null; runSync(); }, shouldUpload ? 800 : 0);
+      });
+    }
+    async function runSync() {
+      if (syncRunning) { syncAgain = true; return; }
+      syncRunning = true;
       try {
-        if (shouldUpload) {
-          await uploadLocalState();
-          document.getElementById('syncStatus').textContent = '（下載最新中...）';
-        }
-        return await downloadRemoteState();
+        do {
+          syncAgain = false;
+          const rev = localRev;
+          if (uploadedRev !== rev) { await uploadLocalState(); uploadedRev = rev; }
+          if (localRev === rev) await downloadRemoteState(rev);
+          else syncAgain = true;
+        } while (syncAgain);
       } catch (err) {
-        document.getElementById('syncStatus').textContent = '（本機體驗）';
-        return null;
+        document.getElementById('syncStatus').textContent = '📴 本機體驗';
       } finally {
-        isSyncing = false;
+        syncRunning = false;
+        const ws = syncWaiters; syncWaiters = [];
+        ws.forEach(r => r(null));
       }
     }
 
@@ -1234,6 +1737,7 @@
       const p = state.plots.find(x => x.plotId === plotId);
       const cfg = CROPS[p.cropType] || CROPS.carrot;
       u.coins += cfg.sell;
+      codexNew('crops', p.cropType || 'carrot', cfg.name);
       p.cropType = ''; p.plantTime = ''; p.waterCount = 0; p.status = 'empty';
       addExp(cfg.exp, `${u.nickname} 收成 ${cfg.icon}${cfg.name}（+${cfg.sell} 金幣）`);
       render();
@@ -1252,6 +1756,7 @@
       SoundFX.animal();
       u.coins -= cfg.price;
       state.animals.push({ uid: 'ANI_' + Date.now(), species: sp, petName: name, hunger: 100, affection: 25, readyProduce: 0 });
+      codexNew('animals', sp, cfg.name);
       addExp(40, `${u.nickname} 領養了 ${cfg.icon}「${name}」`);
       document.getElementById('petName').value = '';
       petDraft = '';
@@ -1542,6 +2047,12 @@
         state.couple.wood += 2;
         addExp(20, `${u.nickname} 在森林聽鳥叫砍伐了 2 單位木材（-${cost} 體力）`);
       }
+      const fd = pickFind(spot);
+      if (fd) {
+        const first = codexAdd('finds', fd.id);
+        toast(`🎁 獲得 ${fd.icon}${fd.name}${first ? '（新發現！）' : ''}`);
+        if (first) addExp(15, `📖 圖鑑新發現：${fd.icon}${fd.name}`);
+      }
       render();
       await syncWithUploadFirst(true);
       render();
@@ -1648,7 +2159,8 @@
       return `<div class="decor-strip">` + owned.map(d => `<span class="decor-badge">${d.name}</span>`).join('') + `</div>`;
     }
 
-    function render() {
+    function render() { renderCore(); translateDom(document.body); }
+    function renderCore() {
       const u = curUser();
       const partner = state.users.find(x => x.accountId !== actor) || state.users[1];
       const lv = state.couple.loveLevel;
@@ -1736,6 +2248,8 @@
           }).join('') + `</div>`;
       } else if (currentLoc === 'plaza') {
         bodyHtml += renderPlazaTown();
+      } else if (currentLoc === 'park') {
+        bodyHtml += renderPark();
       } else if (currentLoc === 'beach') {
         bodyHtml += `
           <div class="ocean-stage">
@@ -1814,6 +2328,7 @@
 
       updateCdUI();
       updateWorldMap();
+      renderHeartBar();
 
       document.getElementById('logsList').innerHTML = state.logs.map(l => {
         const who = l.actorId === 'player_1' ? 'Terence' : (l.actorId === 'player_2' ? 'Namwan' : '系統');
@@ -1824,18 +2339,35 @@
     state.users.forEach(normalizeUser);
     ensurePlots();
     syncLevelDerived();
+    state.animals.forEach(an => { if (!state.codex.animals[an.species]) state.codex.animals[an.species] = 1; });
     buildWorldMap();
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
+    if (lang !== 'zh') document.title = lang === 'en' ? 'Couple 2.5D Farm Adventure' : 'ฟาร์มผจญภัย 2.5D ของคู่รัก';
+    document.getElementById('idBtn' + (actor === 'player_2' ? 2 : 1)).classList.add('last');
     switchActor(actor);
-    goLocation(LOC_META[currentLoc] ? currentLoc : 'farm', true);
-    setInterval(() => {
-      if (!uiBusy() && currentLoc === 'farm' && state.plots.some(p => p.status === 'growing')) render();
-      else renderHud();
-      updateCdUI();
-    }, 1000);
-    setInterval(() => {
-      syncWithUploadFirst(true).then(() => { if (!gTimer && !uiBusy()) render(); });
-    }, 12000);
-    syncWithUploadFirst(false).then(() => render());
+    if (!LOC_META[currentLoc]) currentLoc = 'farm';
+    document.getElementById('currentLocLabel').textContent = LOC_META[currentLoc].label;
+    render();
+    translateDom(document.body);
+    function chooseActor(id) {
+      switchActor(id);
+      document.getElementById('idModal').classList.remove('show');
+      startGame();
+    }
+    function startGame() {
+      started = true;
+      goLocation(currentLoc, true);
+      setInterval(() => {
+        if (!uiBusy() && !busyGame && currentLoc === 'farm' && state.plots.some(p => p.status === 'growing')) render();
+        else renderHud();
+        updateCdUI();
+      }, 1000);
+      setInterval(() => {
+        syncWithUploadFirst(false).then(() => { if (!gTimer && !uiBusy() && !busyGame && !modalFn) render(); else if (modalFn) refreshModal(); });
+      }, 12000);
+      syncWithUploadFirst(false).then(() => render());
+    }
   </script>
 </body>
 </html>
